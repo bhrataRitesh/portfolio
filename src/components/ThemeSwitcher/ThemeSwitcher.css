@@ -1,0 +1,21 @@
+.theme-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--text-primary);
+  transition: transform var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+}
+
+.theme-switcher:hover {
+  transform: scale(1.1);
+  background: var(--bg-tertiary);
+  color: var(--accent-primary);
+}
+
+.theme-switcher.placeholder {
+  opacity: 0;
+  pointer-events: none;
+}
