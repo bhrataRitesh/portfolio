@@ -23,12 +23,14 @@ export const personalInfo = {
     "DevOps & Cloud",
   ],
   availableStatus: "Open for Opportunities",
+  resumeUrl: "/Ritesh_Yadav_Resume.pdf",
 };
 
 export const socialLinks = {
   github: "https://github.com/bhrataRitesh",
   linkedin: "https://www.linkedin.com/in/riteshyadav16/",
   email: "mailto:ratohikumar@gmail.com",
+  resume: "/Ritesh_Yadav_Resume.pdf",
   whatsapp: "",
   telegram: "",
 };

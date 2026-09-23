@@ -55,6 +55,17 @@
   font-weight: 500;
 }
 
+.about-resume-box {
+  margin-top: 1.75rem;
+  display: flex;
+}
+
+.about-resume-box .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
 /* Wireframe Globe */
 .globe-container {
   position: relative;

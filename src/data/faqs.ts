@@ -13,7 +13,7 @@ export const faqData = [
   },
   {
     question: "Where can I find your resume?",
-    answer: "You can reach out to me via email or LinkedIn to request my latest resume! I provide it dynamically based on the roles we are discussing.",
+    answer: "You can download my latest resume directly using the 'Resume' button in the navigation bar, hero section, or About section! It is available as a PDF.",
   },
   {
     question: "Can you design websites as well as build them?",
