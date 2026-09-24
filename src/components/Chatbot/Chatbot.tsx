@@ -193,7 +193,7 @@ export default function Chatbot() {
     <div className={`chatbot-container ${isOpen ? "open" : ""}`}>
       {/* Floating Toggle Button */}
       <button
-        className="chatbot-toggle glass"
+        className="chatbot-toggle"
         onClick={() => setIsOpen(!isOpen)}
         aria-label={isOpen ? "Close chat assistant" : "Open chat assistant"}
         title={isOpen ? "Close Assistant" : "Chat with Ritesh's AI Assistant"}
@@ -205,7 +205,7 @@ export default function Chatbot() {
               height="22"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="currentColor"
+              stroke="#ffffff"
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -220,7 +220,7 @@ export default function Chatbot() {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="currentColor"
+                stroke="#ffffff"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -234,7 +234,7 @@ export default function Chatbot() {
       </button>
 
       {/* Chat Window */}
-      <div className="chatbot-window glass">
+      <div className="chatbot-window">
         {/* Header */}
         <div className="chatbot-header">
           <div className="header-info">
