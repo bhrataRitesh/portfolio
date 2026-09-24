@@ -218,11 +218,29 @@ export function getBotResponse(input: string): BotReply {
     };
   }
 
-  // 9. E-COMMERCE / CS-CART / OPENCART / ZOHO / EBAY
-  if (has("ecommerce", "e-commerce", "cs-cart", "cscart", "opencart", "zoho", "ebay", "connector", "connectors")) {
+  // 9. E-COMMERCE / CS-CART / OPENCART / AMAZON / ZOHO / EBAY
+  if (
+    has(
+      "ecommerce",
+      "e-commerce",
+      "cs-cart",
+      "cscart",
+      "opencart",
+      "amazon",
+      "sp-api",
+      "zoho",
+      "ebay",
+      "wix",
+      "woocommerce",
+      "connector",
+      "connectors",
+      "rabbitmq",
+      "verifactu"
+    )
+  ) {
     return {
-      text: `🛒 **E-Commerce & Custom Connectors:**\n\nRitesh specializes in developing scalable add-ons and integrations for major e-commerce platforms:\n\n• **CS-Cart & OpenCart**: Add-on development, architecture tuning, and customization.\n• **Multi-Channel Connectors**: Built connectors linking Zoho Inventory, Zoho CRM, and eBay.\n• **Global Clients**: Directly collaborated with international clients to implement custom merchant workflows.`,
-      suggestions: ["Work Experience", "Technical Skills", "Contact Info"],
+      text: `🛒 **E-Commerce & Custom Connectors Expertise:**\n\nRitesh specializes in developing scalable add-ons and automated multi-channel integrations:\n\n• **CS-Cart & OpenCart**: Add-on development, core hooks, standard architectures, and performance tuning.\n• **Marketplaces & Connectors**: Automated catalog, order, and inventory sync for **Amazon SP-API**, **eBay REST API**, **Zoho (Inventory & CRM)**, **WooCommerce**, and **Wix**.\n• **Queue Synchronization**: Fault-tolerant **RabbitMQ** background queue handlers with heartbeat monitoring and single-consumer locking.\n• **FinTech Compliance**: Built the Spanish tax agency **Veri*Factu Invoice** compliance add-on and integrated **Stripe Custom Accounts/BNPL**.\n• **Global Clients**: Collaborated directly with international clients to deliver tailored production solutions.`,
+      suggestions: ["Work Experience", "Technical Skills", "Download Resume"],
     };
   }
 
