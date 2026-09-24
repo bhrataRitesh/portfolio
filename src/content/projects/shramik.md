@@ -5,14 +5,20 @@ description: "A job marketplace for daily wage workers with real-time hiring, ro
 technologies: ["Node.js", "Express.js", "MongoDB", "EJS", "JavaScript", "Stripe API"]
 imageUrl: "/projects/ecommerce-bg.png"
 featured: true
+liveUrl: "https://shramik-two.vercel.app"
+githubUrl: "https://github.com/bhrataRitesh/shramik"
 ---
 
 # Shramik — Real-Time Job Marketplace
 
 Shramik is a community-focused employment marketplace dedicated to empowering daily wage workers by connecting them directly with local employers and contractors in real-time.
 
+🌐 **Live Application**: [https://shramik-two.vercel.app](https://shramik-two.vercel.app)  
+💻 **Source Code**: [https://github.com/bhrataRitesh/shramik](https://github.com/bhrataRitesh/shramik)
+
 ## Key Features & Highlights
 
+- **Live Deployment**: Hosted live at [shramik-two.vercel.app](https://shramik-two.vercel.app) for seamless real-time worker hiring and job postings.
 - **Role-Based Access**: Specialized portals for Admins, Employers, and Daily Wage Workers to ensure tailored workflows and seamless communication.
 - **Real-Time Job Feeds**: Instant job broadcasting and applicant discovery, significantly reducing idle search time for daily laborers.
 - **Secure Wage Release**: Integrated Stripe API for secure payouts and financial protection for contracted work.

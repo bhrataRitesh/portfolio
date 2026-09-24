@@ -80,6 +80,7 @@ export function getBotResponse(input: string): BotReply {
 
   // 4. ABOUT / BIO / WHO IS RITESH
   if (
+    !has("shramik", "studynotion", "leetcode", "dsa", "webkul", "refresh", "skill", "education") &&
     has("who are you", "who is ritesh", "about", "bio", "background", "summary", "profile", "introduce", "tell me about yourself", "tell me about ritesh")
   ) {
     return {
@@ -147,17 +148,17 @@ export function getBotResponse(input: string): BotReply {
     if (has("shramik")) {
       const p = projectsData.find((x) => x.title.toLowerCase().includes("shramik")) || projectsData[1];
       return {
-        text: `🛠️ **${p.title}** (${p.period})\n\n${p.description}\n\n**Key Highlights:**\n${p.bullets?.map((b) => `• ${b}`).join("\n")}\n\n**Stack:** ${p.technologies.join(", ")}`,
+        text: `🛠️ **${p.title}** (${p.period})\n\n${p.description}\n\n**Key Highlights:**\n${p.bullets?.map((b) => `• ${b}`).join("\n")}\n\n**Stack:** ${p.technologies.join(", ")}\n\n• 🌐 **Live Web App**: [https://shramik-two.vercel.app](https://shramik-two.vercel.app)\n• 💻 **Source Code**: [github.com/bhrataRitesh/shramik](https://github.com/bhrataRitesh/shramik)`,
         actionLink: {
-          label: "View Shramik on GitHub",
-          url: p.github || "https://github.com/bhrataRitesh/shramik",
+          label: "Open Shramik Live App ↗",
+          url: "https://shramik-two.vercel.app",
         },
-        suggestions: ["Tell me about StudyNotion", "Technical Skills", "Contact Info"],
+        suggestions: ["StudyNotion Details", "Technical Skills", "Contact Info"],
       };
     }
 
     return {
-      text: `🚀 **Featured Projects by Ritesh:**\n\n1. **StudyNotion** (May 2025)\nFull-stack EdTech platform with role-based dashboards, video courses, and Razorpay webhook integration.\n*Stack: React.js, Tailwind CSS, Node.js, Express, MongoDB, Razorpay*\n\n2. **Shramik** (Dec 2024)\nReal-time job marketplace for daily wage workers with role-based access and Stripe payouts.\n*Stack: Node.js, Express.js, MongoDB, EJS, JavaScript, Stripe API*`,
+      text: `🚀 **Featured Projects by Ritesh:**\n\n1. **StudyNotion** (May 2025)\nFull-stack EdTech platform with role-based dashboards, video courses, and Razorpay webhook integration.\n*Stack: React.js, Tailwind CSS, Node.js, Express, MongoDB, Razorpay*\n\n2. **Shramik** (Dec 2024) — [Live Demo](https://shramik-two.vercel.app)\nReal-time job marketplace for daily wage workers with role-based access and Stripe payouts.\n*Stack: Node.js, Express.js, MongoDB, EJS, JavaScript, Stripe API*`,
       suggestions: [
         "StudyNotion Details",
         "Shramik Details",

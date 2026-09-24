@@ -15,6 +15,8 @@ export interface ProjectData {
   imageUrl: string;
   contentHtml?: string;
   featured?: boolean;
+  liveUrl?: string;
+  githubUrl?: string;
 }
 
 export function getSortedProjectsData(): ProjectData[] {

@@ -61,10 +61,17 @@ export default function ProjectCard({ project }: { project: ProjectData }) {
         }} />
 
         <div className="project-card-content" style={{ position: "relative", zIndex: 2 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
+            <time dateTime={project.date} className="project-date text-tertiary">
+              {new Date(project.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+            </time>
+            {project.liveUrl && (
+              <span className="featured-live-badge" style={{ pointerEvents: "none" }}>
+                <span className="live-dot" /> Live Demo
+              </span>
+            )}
+          </div>
           <h2>{project.title}</h2>
-          <time dateTime={project.date} className="project-date text-tertiary">
-            {new Date(project.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-          </time>
           <p className="project-desc text-secondary">{project.description}</p>
           
           <div className="project-tech">
@@ -76,8 +83,13 @@ export default function ProjectCard({ project }: { project: ProjectData }) {
             )}
           </div>
         </div>
-        <div className="project-hover-effect" style={{ position: "relative", zIndex: 2 }}>
-          Read Case Study &rarr;
+        <div className="project-hover-effect" style={{ position: "relative", zIndex: 2, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <span>Read Case Study &rarr;</span>
+          {project.liveUrl && (
+            <span style={{ color: "var(--accent-primary)", fontWeight: 600, fontSize: "0.85rem" }}>
+              Live App ↗
+            </span>
+          )}
         </div>
       </Link>
     </Tilt>

@@ -5,11 +5,14 @@ description: "A full-stack e-learning platform where instructors create and sell
 technologies: ["React.js", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "Razorpay"]
 imageUrl: "/projects/portfolio-bg.png"
 featured: true
+githubUrl: "https://github.com/bhrataRitesh/StudyNotion"
 ---
 
 # StudyNotion — Scalable EdTech Platform
 
 StudyNotion is an end-to-end full-stack e-learning platform designed to bridge the gap between knowledgeable educators and eager learners worldwide.
+
+💻 **Source Code**: [https://github.com/bhrataRitesh/StudyNotion](https://github.com/bhrataRitesh/StudyNotion)
 
 ## Key Features & Highlights
 

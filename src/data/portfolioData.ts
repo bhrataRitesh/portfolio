@@ -250,6 +250,7 @@ export const projectsData = [
       "Stripe API",
     ],
     github: "https://github.com/bhrataRitesh/shramik",
+    liveUrl: "https://shramik-two.vercel.app",
   },
 ];
 
