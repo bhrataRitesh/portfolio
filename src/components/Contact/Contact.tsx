@@ -147,6 +147,16 @@ export default function Contact() {
                 >
                   LinkedIn
                 </a>
+                {socialLinks.leetcode && (
+                  <a
+                    href={socialLinks.leetcode}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-chip"
+                  >
+                    LeetCode
+                  </a>
+                )}
                 {socialLinks.whatsapp && (
                   <a
                     href={socialLinks.whatsapp}

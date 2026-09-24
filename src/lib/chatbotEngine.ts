@@ -2,6 +2,7 @@ import {
   personalInfo,
   contactInfo,
   socialLinks,
+  leetcodeData,
   educationData,
   skillsData,
   experienceData,
@@ -16,6 +17,7 @@ export interface BotReply {
 
 export const initialSuggestions = [
   "About Ritesh",
+  "LeetCode & DSA",
   "Work Experience",
   "Technical Skills",
   "Featured Projects",
@@ -206,11 +208,38 @@ export function getBotResponse(input: string): BotReply {
 
     return {
       text: `⚡ **Technical Skills Breakdown:**\n\n${list}`,
-      suggestions: ["Work Experience", "Featured Projects", "Download Resume"],
+      suggestions: ["LeetCode & DSA", "Work Experience", "Featured Projects", "Download Resume"],
     };
   }
 
-  // 8. AI / LLM / VECTOR DB / CHATBOT
+  // 8. LEETCODE & PROBLEM SOLVING / DSA
+  if (
+    has(
+      "leetcode",
+      "dsa",
+      "problem",
+      "problems",
+      "solving",
+      "algo",
+      "algos",
+      "algorithm",
+      "algorithms",
+      "competitive",
+      "structure",
+      "structures"
+    )
+  ) {
+    return {
+      text: `🧩 **LeetCode & Problem Solving Profile:**\n\n• **Profile**: [@${leetcodeData.username}](${leetcodeData.profileUrl})\n• **Total Problems Solved**: **${leetcodeData.totalSolved}+**\n  - 🟢 **Easy**: ${leetcodeData.easy}\n  - 🟡 **Medium**: ${leetcodeData.medium}\n  - 🔴 **Hard**: ${leetcodeData.hard}\n• **Primary Language**: **${leetcodeData.primaryLanguage}** (${leetcodeData.primarySolved} solved), plus MySQL (${leetcodeData.totalSolved - leetcodeData.primarySolved} solved)\n• **Core Strengths**: Deep understanding of Data Structures & Algorithms, binary trees, dynamic programming, two pointers, graphs, and algorithmic complexity optimization.`,
+      actionLink: {
+        label: "View LeetCode Profile",
+        url: leetcodeData.profileUrl,
+      },
+      suggestions: ["Technical Skills", "Work Experience", "Featured Projects"],
+    };
+  }
+
+  // 9. AI / LLM / VECTOR DB / CHATBOT
   if (has("ai", "llm", "llms", "vector", "chatbot", "bot", "semantic", "nlp", "rag")) {
     return {
       text: `🤖 **AI & LLM Integration Expertise:**\n\nAt Webkul, Ritesh designed and deployed a **multilingual chatbot powered by LLMs with semantic search**, backed by an in-house **vector database**.\n\n• Fast semantic document search & vector embeddings retrieval\n• Contextual prompt engineering for high answer accuracy\n• Multilingual query understanding and natural language responses`,
@@ -218,7 +247,7 @@ export function getBotResponse(input: string): BotReply {
     };
   }
 
-  // 9. E-COMMERCE / CS-CART / OPENCART / AMAZON / ZOHO / EBAY
+  // 10. E-COMMERCE / CS-CART / OPENCART / AMAZON / ZOHO / EBAY
   if (
     has(
       "ecommerce",
@@ -244,7 +273,7 @@ export function getBotResponse(input: string): BotReply {
     };
   }
 
-  // 10. EDUCATION / DEGREE / COLLEGE
+  // 11. EDUCATION / DEGREE / COLLEGE
   if (has("education", "college", "degree", "mca", "b.sc", "bsc", "school", "cgpa", "grade", "university", "gl bajaj", "xavier")) {
     const ed = educationData
       .map(
@@ -259,7 +288,7 @@ export function getBotResponse(input: string): BotReply {
     };
   }
 
-  // 11. CONTACT / HIRE / EMAIL / PHONE / LINKEDIN / GITHUB
+  // 12. CONTACT / HIRE / EMAIL / PHONE / LINKEDIN / GITHUB / LEETCODE
   if (
     has(
       "contact",
@@ -282,20 +311,21 @@ export function getBotResponse(input: string): BotReply {
     )
   ) {
     return {
-      text: `📫 **Get In Touch with Ritesh Yadav:**\n\n• **Email**: [${contactInfo.email}](mailto:${contactInfo.email})\n• **Phone**: [${contactInfo.phone}](tel:${contactInfo.phone.replace(/[^0-9+]/g, "")})\n• **Location**: ${contactInfo.location}\n• **Status**: ${personalInfo.availableStatus}\n• **LinkedIn**: [linkedin.com/in/riteshyadav16](${socialLinks.linkedin})\n• **GitHub**: [github.com/bhrataRitesh](${socialLinks.github})`,
+      text: `📫 **Get In Touch with Ritesh Yadav:**\n\n• **Email**: [${contactInfo.email}](mailto:${contactInfo.email})\n• **Phone**: [${contactInfo.phone}](tel:${contactInfo.phone.replace(/[^0-9+]/g, "")})\n• **Location**: ${contactInfo.location}\n• **Status**: ${personalInfo.availableStatus}\n• **LinkedIn**: [linkedin.com/in/riteshyadav16](${socialLinks.linkedin})\n• **GitHub**: [github.com/bhrataRitesh](${socialLinks.github})\n• **LeetCode**: [leetcode.com/u/${leetcodeData.username}](${leetcodeData.profileUrl})`,
       actionLink: {
         label: "Open LinkedIn Profile",
         url: socialLinks.linkedin,
       },
-      suggestions: ["Download Resume", "Work Experience", "Featured Projects"],
+      suggestions: ["Download Resume", "LeetCode & DSA", "Work Experience", "Featured Projects"],
     };
   }
 
-  // 12. GENERAL INTELLIGENT FALLBACK
+  // 13. GENERAL INTELLIGENT FALLBACK
   return {
-    text: `I'm not completely sure about that specific detail, but I'd love to help! You can ask me about:\n\n• Ritesh's **Experience** at Webkul or Refresh Infratech\n• His **Technical Skills** (React, Next.js, Node.js, FastAPI, LLMs)\n• Featured **Projects** (StudyNotion & Shramik)\n• His **Education** (MCA & B.Sc. IT)\n• Or **Download his Resume** below.`,
+    text: `I'm not completely sure about that specific detail, but I'd love to help! You can ask me about:\n\n• Ritesh's **Experience** at Webkul or Refresh Infratech\n• His **LeetCode & DSA Profile** (${leetcodeData.totalSolved}+ solved in C++)\n• His **Technical Skills** (React, Next.js, Node.js, FastAPI, LLMs)\n• Featured **Projects** (StudyNotion & Shramik)\n• His **Education** (MCA & B.Sc. IT)\n• Or **Download his Resume** below.`,
     suggestions: [
       "About Ritesh",
+      "LeetCode & DSA",
       "Work Experience",
       "Technical Skills",
       "Featured Projects",

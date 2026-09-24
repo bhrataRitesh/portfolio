@@ -30,11 +30,23 @@ export const personalInfo = {
 export const socialLinks = {
   github: "https://github.com/bhrataRitesh",
   linkedin: "https://www.linkedin.com/in/riteshyadav16/",
+  leetcode: "https://leetcode.com/u/iamritesh16/",
   email: "mailto:ratohikumar@gmail.com",
   resume: "/Ritesh_Yadav_Resume.pdf",
   portfolio: "https://ritesh-yadav16.vercel.app",
   whatsapp: "",
   telegram: "",
+};
+
+export const leetcodeData = {
+  username: "iamritesh16",
+  profileUrl: "https://leetcode.com/u/iamritesh16/",
+  totalSolved: 116,
+  easy: 50,
+  medium: 55,
+  hard: 11,
+  primaryLanguage: "C++",
+  primarySolved: 108,
 };
 
 export const contactInfo = {
@@ -135,9 +147,10 @@ export const skillsData = [
     ],
   },
   {
-    category: "FinTech, AI & Concepts",
+    category: "FinTech, AI & Problem Solving",
     icon: "bot",
     items: [
+      "Data Structures & Algorithms (LeetCode 116+)",
       "Stripe (Custom Accounts, Webhooks)",
       "Razorpay",
       "Veri*Factu Compliance",
@@ -242,9 +255,9 @@ export const projectsData = [
 
 export const statsData = [
   { value: "2+", label: "Years Exp" },
+  { value: "116+", label: "LeetCode Solved" },
   { value: "10+", label: "Enterprise Connectors" },
-  { value: "25+", label: "Technologies & Tools" },
-  { value: "100%", label: "Client Satisfaction" },
+  { value: "25+", label: "Tech & Tools" },
 ];
 
 export const whatIBringData = [
@@ -254,7 +267,7 @@ export const whatIBringData = [
   "LLMs & Vector DB",
   "CS-Cart & OpenCart",
   "Stripe & FinTech",
-  "DevOps & CI/CD",
+  "DSA & LeetCode (C++)",
   "Playwright E2E",
 ];
 
