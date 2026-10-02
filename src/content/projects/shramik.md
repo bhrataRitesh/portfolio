@@ -3,7 +3,7 @@ title: "Shramik v2 — Real-Time Labor Marketplace & Voice AI"
 date: "2024-12-01"
 description: "Full-stack labor marketplace built with Next.js 16, React 19, and TypeScript featuring Voice AI search, e-Shram verification, and Razorpay escrow payments."
 technologies: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4", "MongoDB", "Razorpay", "Voice AI", "Cloudinary", "Zod", "Jose (JWT)"]
-imageUrl: "/projects/ecommerce-bg.png"
+imageUrl: "/projects/shramik-live.png"
 featured: true
 liveUrl: "https://shramik-two.vercel.app"
 githubUrl: "https://github.com/bhrataRitesh/shramik"
