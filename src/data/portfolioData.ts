@@ -5,18 +5,19 @@
 export const personalInfo = {
   name: "Ritesh Yadav",
   firstName: "Ritesh",
-  title: "Software Analyst & Full-Stack Developer",
+  title: "Software Engineer & Full-Stack Developer",
   typingRoles: [
-    "Software Analyst",
+    "Software Engineer",
     "Full-Stack Developer",
+    "Backend & Distributed Systems",
     "E-Commerce & Connector Architect",
     "LLM & Vector DB Engineer",
     "Next.js & React Developer",
     "FastAPI & Node.js Specialist",
   ],
-  bio: "Software Analyst & Full-Stack Developer with hands-on experience building enterprise e-commerce connectors (Amazon SP-API, eBay, Zoho, Wix), RabbitMQ queue architectures, LLM chatbots with vector databases, and scalable full-stack platforms.",
+  bio: "Software Engineer with hands-on experience building enterprise e-commerce connectors (Amazon SP-API, eBay, Zoho, Wix), RabbitMQ queue architectures, LLM chatbots with vector databases, and scalable full-stack platforms.",
   summary:
-    "Software Analyst and Full-Stack Developer with production experience at Webkul and Refresh Infratech. Specialized in developing custom e-commerce connectors for Amazon SP-API, eBay, Zoho Inventory/CRM, and Wix on CS-Cart and OpenCart, building resilient RabbitMQ background queue handlers, engineering Spanish tax Veri*Factu compliance add-ons, and integrating multilingual chatbots using LLMs and vector databases with semantic search.",
+    "Software Engineer with production experience at Webkul and Refresh Infratech. Specialized in developing custom e-commerce connectors for Amazon SP-API, eBay, Zoho Inventory/CRM, and Wix on CS-Cart and OpenCart, building resilient RabbitMQ background queue handlers, engineering Spanish tax Veri*Factu compliance add-ons, and integrating multilingual chatbots using LLMs and vector databases with semantic search.",
   currentFocus: [
     "Enterprise E-Commerce Sync",
     "Amazon SP-API & Marketplaces",
@@ -163,8 +164,8 @@ export const skillsData = [
 
 export const experienceData = [
   {
-    period: "Feb 2025 – Oct 2026",
-    role: "Software Analyst (Full-Time) Onsite",
+    period: "Feb 2025 – Present",
+    role: "Software Engineer (Software Analyst) (Full-Time) Onsite",
     company: "Webkul",
     description:
       "Spearheading enterprise multi-channel e-commerce connectors, message queue architectures, payment compliances, and LLM-powered conversational search.",
