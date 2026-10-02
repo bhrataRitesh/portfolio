@@ -68,7 +68,7 @@ export function getBotResponse(input: string): BotReply {
   // 3. RESUME / CV
   if (has("resume", "cv", "pdf", "biodata", "curriculum")) {
     return {
-      text: `📄 You can download Ritesh Yadav's latest verified resume right here:\n\n• **Title**: ${personalInfo.title}\n• **Last Updated**: September 2026\n• **Format**: PDF Document`,
+      text: `📄 You can download Ritesh Yadav's latest verified resume right here:\n\n• **Title**: ${personalInfo.title}\n• **Last Updated**: October 2026\n• **Format**: PDF Document`,
       actionLink: {
         label: "Download Resume (PDF)",
         url: personalInfo.resumeUrl || "/Ritesh_Yadav_Resume.pdf",

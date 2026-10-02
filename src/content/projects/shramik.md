@@ -1,32 +1,33 @@
 ---
-title: "Shramik — Real-Time Job Marketplace"
+title: "Shramik v2 — Real-Time Labor Marketplace & Voice AI"
 date: "2024-12-01"
-description: "A job marketplace for daily wage workers with real-time hiring, role-based access (admin, employer, worker), and responsive UI using EJS templates."
-technologies: ["Node.js", "Express.js", "MongoDB", "EJS", "JavaScript", "Stripe API"]
+description: "Full-stack labor marketplace built with Next.js 16, React 19, and TypeScript featuring Voice AI search, e-Shram verification, and Razorpay escrow payments."
+technologies: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4", "MongoDB", "Razorpay", "Voice AI", "Cloudinary", "Zod", "Jose (JWT)"]
 imageUrl: "/projects/ecommerce-bg.png"
 featured: true
 liveUrl: "https://shramik-two.vercel.app"
 githubUrl: "https://github.com/bhrataRitesh/shramik"
 ---
 
-# Shramik — Real-Time Job Marketplace
+# Shramik v2 — Real-Time Labor Marketplace & Voice AI
 
-Shramik is a community-focused employment marketplace dedicated to empowering daily wage workers by connecting them directly with local employers and contractors in real-time.
+Shramik v2 is a full-stack, community-focused labor marketplace engineered to empower daily wage workers and contractors with transparent hiring, voice-first accessibility, and secure financial escrow.
 
 🌐 **Live Application**: [https://shramik-two.vercel.app](https://shramik-two.vercel.app)  
 💻 **Source Code**: [https://github.com/bhrataRitesh/shramik](https://github.com/bhrataRitesh/shramik)
 
 ## Key Features & Highlights
 
-- **Live Deployment**: Hosted live at [shramik-two.vercel.app](https://shramik-two.vercel.app) for seamless real-time worker hiring and job postings.
-- **Role-Based Access**: Specialized portals for Admins, Employers, and Daily Wage Workers to ensure tailored workflows and seamless communication.
-- **Real-Time Job Feeds**: Instant job broadcasting and applicant discovery, significantly reducing idle search time for daily laborers.
-- **Secure Wage Release**: Integrated Stripe API for secure payouts and financial protection for contracted work.
-- **Trust & Reputation**: Built-in rating and review mechanisms establishing social proof and fair accountability.
-- **Dynamic Templating**: Server-rendered fast pages utilizing EJS templates for minimal client overhead and optimal mobile compatibility.
+- **Modern Architecture (v2 Overhaul)**: Re-architected from a legacy monolith to **Next.js 16 (App Router)** and **React 19** with TypeScript, delivering near-instant page transitions and optimized server components.
+- **Voice AI Job Matching**: Implemented conversational voice interfaces enabling informal workers with low digital literacy to search, apply, and communicate through spoken commands.
+- **e-Shram & OTP Verification**: Integrated mobile OTP verification and government e-Shram identity validation to establish verified, trusted worker profiles.
+- **Escrow Payouts & Double-Entry Ledger**: Engineered an automated transaction ledger (`LedgerTransaction`) integrated with **Razorpay**, holding project payments in escrow until work milestones are confirmed.
+- **Direct Bookings & Requirement Broadcasting**: Real-time worker availability management, immediate contractor hiring workflows, and dynamic status notifications.
+- **Cloudinary Media Pipelines**: Fast, compressed image uploads for worker KYC credentials and proof-of-work job completion photos.
 
-## Architecture & Implementation
+## Architecture & Technical Stack
 
-- **Backend**: Scalable Node.js and Express.js architecture powering REST APIs and worker management endpoints.
-- **Database**: MongoDB storage schemas designed for low-latency queries across job listings, worker profiles, and hiring transactions.
-- **Security & Payments**: Automated webhook handling and Stripe payment integration ensuring reliable escrow and wage disbursement.
+- **Frontend & App Framework**: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Lucide Icons, Canvas Confetti.
+- **Backend & Database**: Next.js Server Actions & API Routes with Mongoose / MongoDB schemas optimized for sub-50ms query latencies.
+- **Authentication & Security**: Stateless JWT session management with `jose`, strict runtime schema validation with `Zod`, and HMAC webhook signature checks.
+- **Payment Infrastructure**: Razorpay orders API, escrow deposit flows, and automated ledger balancing.
