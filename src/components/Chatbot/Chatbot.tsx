@@ -85,7 +85,7 @@ const INITIAL_MESSAGES: Message[] = [
   {
     id: 1,
     type: "bot",
-    text: "Hi there! 👋 I'm **Ritesh's AI Assistant**.\n\nAsk me about his experience at **Webkul**, tech stack, featured projects (**StudyNotion & Shramik**), education, or grab his resume!",
+    text: "Hi there! 👋 I'm **Ritesh's AI Assistant**.\n\nAsk me about his experience at **Webkul**, tech stack, featured projects (**EduYug & Shramik**), education, or grab his resume!",
     time: "Just now",
   },
 ];

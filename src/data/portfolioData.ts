@@ -218,23 +218,27 @@ export const experienceData = [
 
 export const projectsData = [
   {
-    title: "Studynotion — Scalable EdTech Platform",
+    title: "EduYug — AI-Augmented Course Marketplace & Learning Platform",
     period: "May 2025",
     description:
-      "A full-stack e-learning platform where instructors create and sell courses, and students enroll, learn, and track progress with personalized dashboards. Integrated Razorpay with webhook verification for secure payments, implemented RESTful APIs, JWT role-based access control, and responsive UI for cross-device usability.",
+      "A high-scale modular monolith course marketplace built with NestJS 10, Next.js 14, PostgreSQL 16 (pgvector), Redis 7, and BullMQ. Features native pgvector semantic search, timestamped in-browser RAG AI tutoring with video deep-linking, adaptive bitrate HLS.js streaming, and an immutable double-entry ledger with Razorpay.",
     bullets: [
-      "Developed a full-stack e-learning platform where instructors create and sell courses, and students enroll, learn, and track progress with personalized dashboards.",
-      "Integrated Razorpay with webhook verification for secure payments, implemented RESTful APIs, JWT role-based access control, and responsive UI for cross-device usability.",
+      "Architected a modular monolith in Turborepo with NestJS 10, Next.js 14, and PostgreSQL 16, embedding native semantic search via pgvector cosine similarity (<=>).",
+      "Engineered an in-browser timestamped RAG AI Tutor with millisecond video deep-linking, an adaptive bitrate HLS.js player with BullMQ/FFmpeg transcoding, and an immutable double-entry ledger with Razorpay HMAC verification.",
     ],
     technologies: [
-      "React.js",
-      "Tailwind CSS",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
+      "NestJS 10",
+      "Next.js 14",
+      "PostgreSQL (pgvector)",
+      "Redis 7",
+      "BullMQ",
+      "FastAPI (Python)",
+      "TypeScript",
+      "Docker",
       "Razorpay",
+      "HLS.js",
     ],
-    github: "https://github.com/bhrataRitesh/StudyNotion",
+    github: "https://github.com/bhrataRitesh/eduyug",
   },
   {
     title: "Shramik v2 — Real-Time Labor Marketplace & Voice AI",

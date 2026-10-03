@@ -80,7 +80,7 @@ export function getBotResponse(input: string): BotReply {
 
   // 4. ABOUT / BIO / WHO IS RITESH
   if (
-    !has("shramik", "studynotion", "leetcode", "dsa", "webkul", "refresh", "skill", "education") &&
+    !has("shramik", "eduyug", "studynotion", "leetcode", "dsa", "webkul", "refresh", "skill", "education") &&
     has("who are you", "who is ritesh", "about", "bio", "background", "summary", "profile", "introduce", "tell me about yourself", "tell me about ritesh")
   ) {
     return {
@@ -131,15 +131,15 @@ export function getBotResponse(input: string): BotReply {
     }
   }
 
-  // 6. PROJECTS / STUDYNOTION / SHRAMIK
-  if (has("project", "projects", "studynotion", "shramik", "apps", "built", "build", "portfolio")) {
-    if (has("studynotion")) {
-      const p = projectsData.find((x) => x.title.toLowerCase().includes("studynotion")) || projectsData[0];
+  // 6. PROJECTS / EDUYUG / SHRAMIK
+  if (has("project", "projects", "eduyug", "studynotion", "shramik", "apps", "built", "build", "portfolio")) {
+    if (has("eduyug", "studynotion", "course", "lms", "edtech")) {
+      const p = projectsData.find((x) => x.title.toLowerCase().includes("eduyug")) || projectsData[0];
       return {
-        text: `🚀 **${p.title}** (${p.period})\n\n${p.description}\n\n**Key Highlights:**\n${p.bullets?.map((b) => `• ${b}`).join("\n")}\n\n**Stack:** ${p.technologies.join(", ")}`,
+        text: `🎓 **${p.title}** (${p.period})\n\n${p.description}\n\n**Key Innovations:**\n${p.bullets?.map((b) => `• ${b}`).join("\n")}\n\n**Stack:** ${p.technologies.join(", ")}`,
         actionLink: {
-          label: "View StudyNotion on GitHub",
-          url: p.github || "https://github.com/bhrataRitesh/StudyNotion",
+          label: "View EduYug on GitHub ↗",
+          url: p.github || "https://github.com/bhrataRitesh/eduyug",
         },
         suggestions: ["Tell me about Shramik", "Technical Skills", "Work Experience"],
       };
@@ -153,14 +153,14 @@ export function getBotResponse(input: string): BotReply {
           label: "Open Shramik Live App ↗",
           url: "https://shramik-two.vercel.app",
         },
-        suggestions: ["StudyNotion Details", "Technical Skills", "Contact Info"],
+        suggestions: ["EduYug Details", "Technical Skills", "Contact Info"],
       };
     }
 
     return {
-      text: `🚀 **Featured Projects by Ritesh:**\n\n1. **StudyNotion** (May 2025)\nFull-stack EdTech platform with role-based dashboards, video courses, and Razorpay webhook integration.\n*Stack: React.js, Tailwind CSS, Node.js, Express, MongoDB, Razorpay*\n\n2. **Shramik** (Dec 2024) — [Live Demo](https://shramik-two.vercel.app)\nReal-time job marketplace for daily wage workers with role-based access and Stripe payouts.\n*Stack: Node.js, Express.js, MongoDB, EJS, JavaScript, Stripe API*`,
+      text: `🚀 **Featured Projects by Ritesh:**\n\n1. **EduYug** (May 2025)\nAI-augmented course marketplace built with NestJS 10, Next.js 14, PostgreSQL 16 (pgvector), and Redis 7, featuring timestamped in-browser RAG AI tutoring and adaptive bitrate HLS.js streaming.\n*Stack: NestJS 10, Next.js 14, pgvector, Redis, BullMQ, FastAPI, Docker, Razorpay*\n\n2. **Shramik v2** (Dec 2024 – Present) — [Live Demo](https://shramik-two.vercel.app)\nReal-time labor marketplace with Voice AI search for daily wage workers, government e-Shram verification, and Razorpay escrow ledger.\n*Stack: Next.js 16, React 19, TypeScript, MongoDB, Razorpay, Voice AI*`,
       suggestions: [
-        "StudyNotion Details",
+        "EduYug Details",
         "Shramik Details",
         "Technical Skills",
         "Download Resume",
@@ -323,7 +323,7 @@ export function getBotResponse(input: string): BotReply {
 
   // 13. GENERAL INTELLIGENT FALLBACK
   return {
-    text: `I'm not completely sure about that specific detail, but I'd love to help! You can ask me about:\n\n• Ritesh's **Experience** at Webkul or Refresh Infratech\n• His **LeetCode & DSA Profile** (${leetcodeData.totalSolved}+ solved in C++)\n• His **Technical Skills** (React, Next.js, Node.js, FastAPI, LLMs)\n• Featured **Projects** (StudyNotion & Shramik)\n• His **Education** (MCA & B.Sc. IT)\n• Or **Download his Resume** below.`,
+    text: `I'm not completely sure about that specific detail, but I'd love to help! You can ask me about:\n\n• Ritesh's **Experience** at Webkul or Refresh Infratech\n• His **LeetCode & DSA Profile** (${leetcodeData.totalSolved}+ solved in C++)\n• His **Technical Skills** (React, Next.js, Node.js, FastAPI, LLMs)\n• Featured **Projects** (EduYug & Shramik)\n• His **Education** (MCA & B.Sc. IT)\n• Or **Download his Resume** below.`,
     suggestions: [
       "About Ritesh",
       "LeetCode & DSA",

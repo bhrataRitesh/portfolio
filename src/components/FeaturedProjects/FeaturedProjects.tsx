@@ -73,8 +73,8 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
           {projects.map((project, index) => {
             const displayUrl = project.liveUrl
               ? project.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")
-              : project.slug === "studynotion"
-              ? "studynotion.edu"
+              : project.githubUrl
+              ? project.githubUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")
               : "github.com/bhrataRitesh";
 
             return (
@@ -120,6 +120,16 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                       >
                         <span className="pulse-dot" /> Live Embed
                       </button>
+                    ) : project.githubUrl ? (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="browser-github-tag"
+                        title="View GitHub Repository"
+                      >
+                        GitHub ↗
+                      </a>
                     ) : (
                       <span className="browser-dummy-space" />
                     )}
@@ -146,7 +156,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
 
                     {/* Hover Action Overlay */}
                     <div className="featured-image-hover-overlay">
-                      {project.liveUrl && (
+                      {project.liveUrl ? (
                         <button
                           type="button"
                           className="btn-overlay-interactive"
@@ -166,7 +176,28 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                           </svg>
                           <span>Interactive Live Sandbox</span>
                         </button>
-                      )}
+                      ) : project.githubUrl ? (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-overlay-interactive"
+                        >
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                          </svg>
+                          <span>Explore on GitHub ↗</span>
+                        </a>
+                      ) : null}
                       <Link href={`/projects/${project.slug}`} className="btn-overlay-study">
                         <span>View Details →</span>
                       </Link>
@@ -237,7 +268,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                     </Link>
 
                     <div className="featured-card-actions">
-                      {project.liveUrl && (
+                      {project.liveUrl ? (
                         <>
                           <button
                             type="button"
@@ -271,7 +302,29 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                             </svg>
                           </a>
                         </>
-                      )}
+                      ) : project.githubUrl ? (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="featured-github-btn"
+                          title="View Source on GitHub"
+                        >
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                          </svg>
+                          <span>GitHub ↗</span>
+                        </a>
+                      ) : null}
                     </div>
                   </div>
                 </div>
