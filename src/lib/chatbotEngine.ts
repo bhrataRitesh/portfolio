@@ -189,18 +189,17 @@ export function getBotResponse(input: string): BotReply {
       "react",
       "next",
       "node",
-      "fastapi",
       "typescript",
       "javascript",
-      "python",
       "c++",
-      "php",
       "docker",
-      "kubernetes",
       "mongodb",
       "postgres",
+      "postgresql",
       "mysql",
-      "aws"
+      "rabbitmq",
+      "redis",
+      "playwright"
     )
   ) {
     const list = skillsData
@@ -240,36 +239,43 @@ export function getBotResponse(input: string): BotReply {
     };
   }
 
-  // 9. AI / LLM / VECTOR DB / CHATBOT
-  if (has("ai", "llm", "llms", "vector", "chatbot", "bot", "semantic", "nlp", "rag")) {
+  // 9. AI / LLM / VECTOR DB / CHATBOT / PINECONE
+  if (has("ai", "llm", "llms", "vector", "chatbot", "bot", "semantic", "nlp", "rag", "pgvector", "pinecone", "openai")) {
     return {
-      text: `🤖 **AI & LLM Integration Expertise:**\n\nAt Webkul, Ritesh designed and deployed a **multilingual chatbot powered by LLMs with semantic search**, backed by an in-house **vector database**.\n\n• Fast semantic document search & vector embeddings retrieval\n• Contextual prompt engineering for high answer accuracy\n• Multilingual query understanding and natural language responses`,
-      suggestions: ["Work Experience", "Technical Skills", "Featured Projects"],
+      text: `🤖 **AI, Vector Search & RAG Chatbot Expertise:**\n\n• **Multilingual E-Commerce Chatbot**: Built an intelligent RAG pipeline at Webkul using **OpenAI APIs** and **Pinecone**, synchronizing product catalog and CMS vector embeddings to deliver contextual product recommendations with direct store deep-links.\n• **pgvector Native Semantic Search**: Architected into PostgreSQL 16 for EduYug using cosine similarity (<=>) for instant course transcript and lecture retrieval.\n• **Timestamped RAG AI Tutoring**: Engineered real-time contextual question answering with millisecond video seeking deep-links.`,
+      suggestions: ["Featured Projects", "Technical Skills", "Work Experience"],
     };
   }
 
-  // 10. E-COMMERCE / CS-CART / OPENCART / AMAZON / ZOHO / EBAY
+  // 10. BACKEND ARCHITECTURE / RABBITMQ / REDIS / CONNECTORS / STRIPE
   if (
     has(
-      "ecommerce",
-      "e-commerce",
-      "cs-cart",
-      "cscart",
-      "opencart",
+      "backend",
+      "architecture",
+      "rabbitmq",
+      "queue",
+      "queues",
+      "redis",
+      "caching",
+      "bloom",
+      "mset",
       "amazon",
       "sp-api",
       "zoho",
       "ebay",
-      "wix",
-      "woocommerce",
       "connector",
       "connectors",
-      "rabbitmq",
-      "verifactu"
+      "stripe",
+      "payout",
+      "payouts",
+      "latency",
+      "mysql",
+      "postgres",
+      "postgresql"
     )
   ) {
     return {
-      text: `🛒 **E-Commerce & Custom Connectors Expertise:**\n\nRitesh specializes in developing scalable add-ons and automated multi-channel integrations:\n\n• **CS-Cart & OpenCart**: Add-on development, core hooks, standard architectures, and performance tuning.\n• **Marketplaces & Connectors**: Automated catalog, order, and inventory sync for **Amazon SP-API**, **eBay REST API**, **Zoho (Inventory & CRM)**, **WooCommerce**, and **Wix**.\n• **Queue Synchronization**: Fault-tolerant **RabbitMQ** background queue handlers with heartbeat monitoring and single-consumer locking.\n• **FinTech Compliance**: Built the Spanish tax agency **Veri*Factu Invoice** compliance add-on and integrated **Stripe Custom Accounts/BNPL**.\n• **Global Clients**: Collaborated directly with international clients to deliver tailored production solutions.`,
+      text: `⚙️ **Backend Architecture & Distributed Systems Expertise:**\n\nRitesh specializes in high-throughput backend infrastructure, asynchronous messaging, and caching:\n\n• **RabbitMQ Multi-Queue Pipelines**: Designed asynchronous queue architectures with concurrent workers handling product catalogs with lakhs of SKUs without database traffic spikes.\n• **Redis Caching & Bloom Filters**: Implemented Redis caching with Bloom filter validation for unknown features, batched bulk upserts, and MSET synchronization—slashing catalog import latency from **~4–5 minutes to ~30 seconds** and preventing database connection-pool exhaustion.\n• **Marketplace & API Connectors**: Engineered automated connectors for **Amazon SP-API**, **eBay APIs (Trading API, SOAP/XML)**, and **Zoho** with automated token refresh and ASIN chunking (batches of 30).\n• **Concurrency Control**: Replaced database-level locks with **Redis-based coordination** during concurrent imports to eliminate RabbitMQ consumer heartbeat timeouts.\n• **Relational DB Optimization**: Designed composite MySQL indexes on junction tables for sub-millisecond lookups and integrated **Stripe Custom Accounts** for automated seller payouts.\n• **DevOps & Testing**: Production diagnosis via SSH, server isolation, and automated **Playwright regression testing** within GitLab CI/CD pipelines.`,
       suggestions: ["Work Experience", "Technical Skills", "Download Resume"],
     };
   }
@@ -323,7 +329,7 @@ export function getBotResponse(input: string): BotReply {
 
   // 13. GENERAL INTELLIGENT FALLBACK
   return {
-    text: `I'm not completely sure about that specific detail, but I'd love to help! You can ask me about:\n\n• Ritesh's **Experience** at Webkul or Refresh Infratech\n• His **LeetCode & DSA Profile** (${leetcodeData.totalSolved}+ solved in C++)\n• His **Technical Skills** (React, Next.js, Node.js, FastAPI, LLMs)\n• Featured **Projects** (EduYug & Shramik)\n• His **Education** (MCA & B.Sc. IT)\n• Or **Download his Resume** below.`,
+    text: `I'm not completely sure about that specific detail, but I'd love to help! You can ask me about:\n\n• Ritesh's **Experience** at Webkul Software or Refresh Infratech\n• His **LeetCode & DSA Profile** (${leetcodeData.totalSolved}+ solved in C++)\n• His **Technical Skills** (Node.js, TypeScript, React, Next.js, RabbitMQ, PostgreSQL, Redis)\n• Featured **Projects** (EduYug & Shramik v2)\n• His **Education** (MCA & B.Sc. IT)\n• Or **Download his Resume** below.`,
     suggestions: [
       "About Ritesh",
       "LeetCode & DSA",

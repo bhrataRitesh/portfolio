@@ -1,14 +1,14 @@
 ---
-title: "EduYug — AI-Augmented Course Marketplace & Learning Platform"
+title: "EduYug — Course Platform"
 date: "2025-05-01"
-description: "High-scale modular monolith built with NestJS 10, Next.js 14, PostgreSQL 16 (pgvector), Redis 7, and BullMQ featuring in-browser timestamped RAG AI tutoring."
-technologies: ["NestJS 10", "Next.js 14", "PostgreSQL (pgvector)", "Redis 7", "BullMQ", "FastAPI", "TypeScript", "Docker", "Razorpay", "HLS.js"]
+description: "Modular monolith backend built with NestJS, Next.js, and PostgreSQL. Features native pgvector semantic search, BullMQ and Redis async FFmpeg video transcoding with adaptive-bitrate HLS streaming, and Razorpay immutable double-entry ledger."
+technologies: ["NestJS", "Next.js", "PostgreSQL (pgvector)", "Redis", "BullMQ", "FFmpeg", "Razorpay", "HLS.js", "TypeScript", "Docker"]
 imageUrl: "/projects/eduyug-live.png"
 featured: true
 githubUrl: "https://github.com/bhrataRitesh/eduyug"
 ---
 
-# EduYug — AI-Augmented Course Marketplace & Learning Platform
+# EduYug — Course Platform
 
 EduYug is a high-performance course marketplace and learning platform where instructors publish deep technical video courses and students learn through real-time, in-browser AI tutoring with timestamp deep-linking.
 

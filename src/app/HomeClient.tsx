@@ -250,10 +250,11 @@ export default function HomeClient({ projects }: { projects: ProjectData[] }) {
                       {"  "}
                       <span className="code-variable">skills</span>:{" "}
                       <span className="code-bracket">[</span>
-                      <span className="code-string">&quot;React&quot;</span>,{" "}
-                      <span className="code-string">&quot;Next.js&quot;</span>,{" "}
-                      <span className="code-string">&quot;FastAPI&quot;</span>,{" "}
-                      <span className="code-string">&quot;LLMs&quot;</span>
+                      <span className="code-string">&quot;Node.js&quot;</span>,{" "}
+                      <span className="code-string">&quot;TypeScript&quot;</span>,{" "}
+                      <span className="code-string">&quot;RabbitMQ&quot;</span>,{" "}
+                      <span className="code-string">&quot;PostgreSQL&quot;</span>,{" "}
+                      <span className="code-string">&quot;Redis&quot;</span>
                       <span className="code-bracket">]</span>,
                     </span>
                     <span className="code-line">
