@@ -9,29 +9,37 @@ import "./about.css";
 function AnimatedCounter({ value, label }: { value: string; label: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true });
-  const [displayValue, setDisplayValue] = useState("0");
+  const isNumeric = /^([0-9]+(?:\.[0-9]+)?)([%+]?)$/.test(value);
+  const [displayValue, setDisplayValue] = useState(() => (isNumeric ? "0" : value));
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView || !isNumeric) return;
 
-    const numericPart = parseInt(value.replace(/[^0-9]/g, ""));
-    const suffix = value.replace(/[0-9]/g, "");
-    const duration = 2000;
-    const steps = 60;
+    const match = value.match(/^([0-9]+(?:\.[0-9]+)?)([%+]?)$/);
+    if (!match) return;
+
+    const targetNum = parseFloat(match[1]);
+    const suffix = match[2] || "";
+    const isDecimal = match[1].includes(".");
+    const decimalPlaces = isDecimal ? (match[1].split(".")[1]?.length || 1) : 0;
+
+    const duration = 1200;
+    const steps = 30;
     const stepTime = duration / steps;
     let current = 0;
 
     const timer = setInterval(() => {
-      current += numericPart / steps;
-      if (current >= numericPart) {
-        current = numericPart;
+      current += targetNum / steps;
+      if (current >= targetNum) {
+        current = targetNum;
         clearInterval(timer);
       }
-      setDisplayValue(Math.round(current) + suffix);
+      const formatted = isDecimal ? current.toFixed(decimalPlaces) : Math.round(current).toString();
+      setDisplayValue(`${formatted}${suffix}`);
     }, stepTime);
 
     return () => clearInterval(timer);
-  }, [isInView, value]);
+  }, [isInView, value, isNumeric]);
 
   return (
     <div ref={ref} className="stat-card">
