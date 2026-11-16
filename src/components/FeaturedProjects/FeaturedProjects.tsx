@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Perspective3DCard from "@/components/UI3D/Perspective3DCard";
 import "./featured-projects.css";
 
 interface FeaturedProjectsProps {
@@ -84,8 +85,9 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="featured-card card"
+                style={{ display: "flex", flexDirection: "column" }}
               >
+                <Perspective3DCard maxTilt={4} scale={1.01} className="featured-card card" style={{ height: "100%", display: "flex", flexDirection: "column" }}>
                 {/* Browser Mockup Image Container */}
                 <div className="featured-card-browser">
                   {/* macOS Top Chrome Header */}
@@ -328,6 +330,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                     </div>
                   </div>
                 </div>
+                </Perspective3DCard>
               </motion.div>
             );
           })}

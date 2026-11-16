@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { personalInfo, socialLinks } from "@/data/portfolioData";
 import TypingEffect from "@/components/TypingEffect/TypingEffect";
@@ -10,6 +11,8 @@ import Skills from "@/components/Skills/Skills";
 import Experience from "@/components/Experience/Experience";
 import FeaturedProjects from "@/components/FeaturedProjects/FeaturedProjects";
 import Contact from "@/components/Contact/Contact";
+import Perspective3DCard from "@/components/UI3D/Perspective3DCard";
+import Hero3DCanvas from "@/components/UI3D/Hero3DCanvas";
 import "./home.css";
 
 interface ProjectData {
@@ -40,6 +43,8 @@ const itemVars = {
 };
 
 export default function HomeClient({ projects }: { projects: ProjectData[] }) {
+  const [heroVisualMode, setHeroVisualMode] = useState<"3d" | "code">("3d");
+
   const handleScrollToSection = (
     e: React.MouseEvent<HTMLAnchorElement>,
     id: string
@@ -212,69 +217,105 @@ export default function HomeClient({ projects }: { projects: ProjectData[] }) {
               </motion.div>
             </motion.div>
 
-            {/* Right Column — Code Window Illustration */}
+            {/* Right Column — 3D Architecture & Code Terminal */}
             <motion.div
               className="hero-visual"
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
               <div className="hero-illustration">
-                <div className="hero-code-window">
-                  <div className="code-window-header">
-                    <span className="code-dot red" />
-                    <span className="code-dot yellow" />
-                    <span className="code-dot green" />
+                <Perspective3DCard maxTilt={5} scale={1.01}>
+                  <div className="hero-code-window">
+                    <div className="code-window-header">
+                      <div className="code-window-dots">
+                        <span className="code-dot red" />
+                        <span className="code-dot yellow" />
+                        <span className="code-dot green" />
+                      </div>
+                      <div className="code-window-tabs">
+                        <button
+                          type="button"
+                          className={`code-tab-btn ${heroVisualMode === "3d" ? "active" : ""}`}
+                          onClick={() => setHeroVisualMode("3d")}
+                          title="Interactive 3D Distributed Architecture Scene"
+                        >
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                            <line x1="12" y1="22.08" x2="12" y2="12" />
+                          </svg>
+                          3D Architecture
+                        </button>
+                        <button
+                          type="button"
+                          className={`code-tab-btn ${heroVisualMode === "code" ? "active" : ""}`}
+                          onClick={() => setHeroVisualMode("code")}
+                          title="Developer Profile Config"
+                        >
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                            <polyline points="16 18 22 12 16 6" />
+                            <polyline points="8 6 2 12 8 18" />
+                          </svg>
+                          developer.ts
+                        </button>
+                      </div>
+                    </div>
+
+                    {heroVisualMode === "3d" ? (
+                      <Hero3DCanvas />
+                    ) : (
+                      <div className="code-window-body">
+                        <span className="code-line">
+                          <span className="code-keyword">const</span>{" "}
+                          <span className="code-variable">developer</span>{" "}
+                          <span className="code-bracket">=</span>{" "}
+                          <span className="code-bracket">{"{"}</span>
+                        </span>
+                        <span className="code-line">
+                          {"  "}
+                          <span className="code-variable">name</span>:{" "}
+                          <span className="code-string">&quot;{personalInfo.name}&quot;</span>,
+                        </span>
+                        <span className="code-line">
+                          {"  "}
+                          <span className="code-variable">role</span>:{" "}
+                          <span className="code-string">&quot;{personalInfo.title}&quot;</span>,
+                        </span>
+                        <span className="code-line">
+                          {"  "}
+                          <span className="code-variable">skills</span>:{" "}
+                          <span className="code-bracket">[</span>
+                          <span className="code-string">&quot;Node.js&quot;</span>,{" "}
+                          <span className="code-string">&quot;TypeScript&quot;</span>,{" "}
+                          <span className="code-string">&quot;RabbitMQ&quot;</span>,{" "}
+                          <span className="code-string">&quot;PostgreSQL&quot;</span>,{" "}
+                          <span className="code-string">&quot;Redis&quot;</span>
+                          <span className="code-bracket">]</span>,
+                        </span>
+                        <span className="code-line">
+                          {"  "}
+                          <span className="code-variable">passion</span>:{" "}
+                          <span className="code-string">&quot;Building scalable products&quot;</span>,
+                        </span>
+                        <span className="code-line">
+                          {"  "}
+                          <span className="code-function">hireable</span>:{" "}
+                          <span className="code-keyword">true</span>,
+                        </span>
+                        <span className="code-line">
+                          <span className="code-bracket">{"}"}</span>;
+                        </span>
+                        <span className="code-line">&nbsp;</span>
+                        <span className="code-line">
+                          <span className="code-comment">
+                            {"// Let's build something amazing together"}
+                          </span>
+                        </span>
+                      </div>
+                    )}
                   </div>
-                  <div className="code-window-body">
-                    <span className="code-line">
-                      <span className="code-keyword">const</span>{" "}
-                      <span className="code-variable">developer</span>{" "}
-                      <span className="code-bracket">=</span>{" "}
-                      <span className="code-bracket">{"{"}</span>
-                    </span>
-                    <span className="code-line">
-                      {"  "}
-                      <span className="code-variable">name</span>:{" "}
-                      <span className="code-string">&quot;{personalInfo.name}&quot;</span>,
-                    </span>
-                    <span className="code-line">
-                      {"  "}
-                      <span className="code-variable">role</span>:{" "}
-                      <span className="code-string">&quot;{personalInfo.title}&quot;</span>,
-                    </span>
-                    <span className="code-line">
-                      {"  "}
-                      <span className="code-variable">skills</span>:{" "}
-                      <span className="code-bracket">[</span>
-                      <span className="code-string">&quot;Node.js&quot;</span>,{" "}
-                      <span className="code-string">&quot;TypeScript&quot;</span>,{" "}
-                      <span className="code-string">&quot;RabbitMQ&quot;</span>,{" "}
-                      <span className="code-string">&quot;PostgreSQL&quot;</span>,{" "}
-                      <span className="code-string">&quot;Redis&quot;</span>
-                      <span className="code-bracket">]</span>,
-                    </span>
-                    <span className="code-line">
-                      {"  "}
-                      <span className="code-variable">passion</span>:{" "}
-                      <span className="code-string">&quot;Building scalable products&quot;</span>,
-                    </span>
-                    <span className="code-line">
-                      {"  "}
-                      <span className="code-function">hireable</span>:{" "}
-                      <span className="code-keyword">true</span>,
-                    </span>
-                    <span className="code-line">
-                      <span className="code-bracket">{"}"}</span>;
-                    </span>
-                    <span className="code-line">&nbsp;</span>
-                    <span className="code-line">
-                      <span className="code-comment">
-                        {"// Let's build something amazing together"}
-                      </span>
-                    </span>
-                  </div>
-                </div>
+                </Perspective3DCard>
               </div>
             </motion.div>
           </div>

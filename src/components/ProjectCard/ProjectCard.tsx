@@ -2,10 +2,16 @@
 
 import Link from "next/link";
 import { ProjectData } from "@/lib/projects";
+import Perspective3DCard from "@/components/UI3D/Perspective3DCard";
 
 export default function ProjectCard({ project }: { project: ProjectData }) {
   return (
-    <div className="project-card-wrapper" style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+    <Perspective3DCard
+      className="project-card-wrapper"
+      maxTilt={6}
+      scale={1.015}
+      style={{ display: "flex", flexDirection: "column", height: "100%" }}
+    >
       <Link
         href={`/projects/${project.slug}`}
         className="project-card"
@@ -44,6 +50,6 @@ export default function ProjectCard({ project }: { project: ProjectData }) {
           )}
         </div>
       </Link>
-    </div>
+    </Perspective3DCard>
   );
 }
