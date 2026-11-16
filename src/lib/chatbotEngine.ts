@@ -32,13 +32,16 @@ export function getBotResponse(input: string): BotReply {
   const tokens = cleanQ.split(/\s+/).filter(Boolean);
 
   const has = (...words: string[]) =>
-    words.some((w) => cleanQ.includes(w) || tokens.includes(w));
+    words.some((w) =>
+      w.length <= 3 ? tokens.includes(w) : cleanQ.includes(w) || tokens.includes(w)
+    );
+
+  const hasWord = (...words: string[]) =>
+    words.some((w) => tokens.includes(w));
 
   // 1. GREETINGS
   if (
-    has("hi", "hello", "hey", "hola", "namaste", "greetings", "sup", "yo") ||
-    cleanQ === "hi" ||
-    cleanQ === "hello"
+    hasWord("hi", "hello", "hey", "hola", "namaste", "greetings", "sup", "yo")
   ) {
     return {
       text: `Hello! 👋 I'm **Ritesh's AI Assistant**.\n\nI can answer questions about his role as a **${personalInfo.title}**, his work at **Webkul**, his tech stack, featured projects, education, or provide his downloadable resume.\n\nWhat would you like to explore?`,
@@ -198,8 +201,14 @@ export function getBotResponse(input: string): BotReply {
       "postgresql",
       "mysql",
       "rabbitmq",
+      "bullmq",
       "redis",
-      "playwright"
+      "aws",
+      "iam",
+      "pm2",
+      "playwright",
+      "copilot",
+      "claude"
     )
   ) {
     const list = skillsData
