@@ -8,7 +8,7 @@ export default function Projects() {
   return (
     <div className="projects-wrapper container">
       <header className="projects-header animate-fade-in">
-        <h1 className="text-accent-gradient">My Work</h1>
+        <h1 className="projects-title">My Work</h1>
         <p className="text-secondary">
           Explore my latest projects, experiments, and open-source contributions.
         </p>

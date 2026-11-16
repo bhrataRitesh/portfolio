@@ -57,7 +57,7 @@ export default function Skills() {
           {skillsData.map((category, index) => (
             <motion.div
               key={category.category}
-              className="skill-card glass-card"
+              className="skill-card card"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}

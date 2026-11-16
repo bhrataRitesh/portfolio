@@ -84,7 +84,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="featured-card glass-card"
+                className="featured-card card"
               >
                 {/* Browser Mockup Image Container */}
                 <div className="featured-card-browser">

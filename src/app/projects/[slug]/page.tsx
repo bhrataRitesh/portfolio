@@ -21,7 +21,7 @@ export default async function Project({
   return (
     <article className="project-detail-wrapper container animate-fade-in">
       <header className="project-header">
-        <h1 className="project-title text-gradient">{projectData.title}</h1>
+        <h1 className="project-title">{projectData.title}</h1>
         
         <div className="project-meta text-secondary">
           <time dateTime={projectData.date}>
@@ -88,7 +88,7 @@ export default async function Project({
         )}
       </header>
 
-      <div className="project-content glass">
+      <div className="project-content card">
         <div 
           className="markdown-body"
           dangerouslySetInnerHTML={{ __html: projectData.contentHtml || '' }} 

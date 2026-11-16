@@ -207,6 +207,10 @@
   opacity: 0.9;
 }
 
+[data-theme='light'] .btn-overlay-interactive {
+  color: #ffffff;
+}
+
 .btn-overlay-study {
   display: inline-flex;
   align-items: center;

@@ -17,6 +17,6 @@ export const faqData = [
   },
   {
     question: "Can you design websites as well as build them?",
-    answer: "Absolutely! I bridge the gap between design and engineering. I focus heavily on creating premium, engaging user interfaces with modern techniques like glassmorphism and subtle micro-animations.",
+    answer: "Absolutely! I bridge the gap between design and engineering. I focus heavily on creating functional, high-density, restrained user interfaces adhering to modern design standards (like Linear, Raycast, and Stripe) with clear typography and purposeful interactions.",
   }
 ];

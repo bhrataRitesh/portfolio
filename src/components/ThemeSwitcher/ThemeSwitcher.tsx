@@ -21,7 +21,7 @@ export default function ThemeSwitcher() {
 
   return (
     <button
-      className="theme-switcher glass"
+      className="theme-switcher"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       aria-label="Toggle Dark Mode"
     >

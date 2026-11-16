@@ -222,6 +222,10 @@
 .code-variable { color: var(--text-primary); }
 .code-bracket { color: var(--text-tertiary); }
 
+[data-theme='light'] .code-keyword { color: #4f46e5; }
+[data-theme='light'] .code-function { color: #2563eb; }
+[data-theme='light'] .code-string { color: #059669; }
+
 /* Scroll Indicator */
 .scroll-indicator {
   display: flex;

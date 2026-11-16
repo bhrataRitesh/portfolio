@@ -1,6 +1,6 @@
 ---
 name: no-slop-ui
-description: "Build or review frontend UI for clean, restrained, human-designed interfaces without generic AI visual patterns."
+description: "Mandatory skill for all frontend UI, web components, styling, layout, HTML, CSS, Tailwind, Next.js, and React tasks. Build or review clean, restrained, human-designed interfaces without generic AI visual patterns (Linear, Raycast, Stripe, GitHub standards)."
 metadata:
   version: "0.7.0"
 ---
