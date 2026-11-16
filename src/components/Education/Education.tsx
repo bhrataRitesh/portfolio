@@ -28,7 +28,7 @@ export default function Education() {
           {educationData.map((edu, index) => (
             <motion.div
               key={index}
-              className={`education-card glass-card ${index % 2 === 0 ? "left" : "right"}`}
+              className={`education-card card ${index % 2 === 0 ? "left" : "right"}`}
               initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.15 }}

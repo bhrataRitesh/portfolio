@@ -31,11 +31,11 @@ const containerVars = {
 };
 
 const itemVars = {
-  hidden: { opacity: 0, y: 25 },
+  hidden: { opacity: 0, y: 15 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring" as const, stiffness: 100, damping: 14 },
+    transition: { duration: 0.35, ease: "easeOut" as const },
   },
 };
 
@@ -53,9 +53,6 @@ export default function HomeClient({ projects }: { projects: ProjectData[] }) {
     <div className="home-wrapper">
       {/* ====== HERO ====== */}
       <section id="home" className="hero-section">
-        <div className="bg-glow glow-1" />
-        <div className="bg-glow glow-2" />
-
         <div className="container">
           <div className="hero-grid">
             {/* Left Column */}
@@ -278,13 +275,6 @@ export default function HomeClient({ projects }: { projects: ProjectData[] }) {
                     </span>
                   </div>
                 </div>
-
-                {/* Floating badges */}
-                <div className="hero-float-badge">{"<code />"}</div>
-                <div className="hero-float-badge">React & Next.js</div>
-                <div className="hero-float-badge">LLMs & Vector DB</div>
-                <div className="hero-float-badge">E-Commerce</div>
-                <div className="hero-status-badge">🟢 Open for Opportunities</div>
               </div>
             </motion.div>
           </div>

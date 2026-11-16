@@ -64,7 +64,7 @@ export default function Contact() {
             </p>
 
             <div className="contact-cards">
-              <div className="contact-card glass-card">
+              <div className="contact-card card">
                 <span className="contact-card-icon">
                   <svg
                     width="20"
@@ -85,7 +85,7 @@ export default function Contact() {
                   <p>{contactInfo.email}</p>
                 </div>
               </div>
-              <div className="contact-card glass-card">
+              <div className="contact-card card">
                 <span className="contact-card-icon">
                   <svg
                     width="20"
@@ -105,7 +105,7 @@ export default function Contact() {
                   <p>{contactInfo.phone}</p>
                 </div>
               </div>
-              <div className="contact-card glass-card">
+              <div className="contact-card card">
                 <span className="contact-card-icon">
                   <svg
                     width="20"
@@ -183,7 +183,7 @@ export default function Contact() {
 
           {/* Right Column — Contact Form */}
           <motion.form
-            className="contact-form glass-card"
+            className="contact-form card"
             onSubmit={handleSubmit}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}

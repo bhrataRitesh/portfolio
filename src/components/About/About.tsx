@@ -33,29 +33,32 @@ function AnimatedCounter({ value, label }: { value: string; label: string }) {
   }, [isInView, value]);
 
   return (
-    <div ref={ref} className="stat-card glass-card">
-      <span className="stat-value text-accent-gradient">{displayValue}</span>
+    <div ref={ref} className="stat-card">
+      <span className="stat-value">{displayValue}</span>
       <span className="stat-label">{label}</span>
     </div>
   );
 }
 
-function WireframeGlobe() {
+function CapabilitiesGrid() {
   return (
-    <div className="globe-container">
-      <div className="globe-wireframe">
-        <div className="globe-ring globe-ring-1" />
-        <div className="globe-ring globe-ring-2" />
-        <div className="globe-ring globe-ring-3" />
-        <div className="globe-ring globe-ring-4" />
-        <div className="globe-ring globe-ring-5" />
-      </div>
-      {whatIBringData.map((item, i) => (
-        <div
-          key={item}
-          className={`globe-badge globe-badge-${i}`}
-        >
-          {item}
+    <div className="capabilities-grid">
+      {whatIBringData.map((item) => (
+        <div key={item} className="capability-item">
+          <svg
+            className="capability-icon"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--accent-primary)"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          <span className="capability-text">{item}</span>
         </div>
       ))}
     </div>
@@ -85,7 +88,7 @@ export default function About() {
 
         <div className="about-grid">
           <motion.div
-            className="about-summary glass-card"
+            className="about-summary card"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -139,20 +142,20 @@ export default function About() {
           </motion.div>
 
           <motion.div
-            className="about-bring glass-card"
+            className="about-bring card"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
             <h3 className="about-card-title">What I Bring</h3>
-            <WireframeGlobe />
+            <CapabilitiesGrid />
           </motion.div>
         </div>
 
         {/* LeetCode & Problem Solving Showcase */}
         <motion.div
-          className="about-leetcode glass-card"
+          className="about-leetcode card"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
 import Navbar from "@/components/Navbar/Navbar";
-import StarField from "@/components/StarField/StarField";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 import Chatbot from "@/components/Chatbot/Chatbot";
 import { ThemeProvider } from "@/components/ThemeSwitcher/ThemeProvider";
@@ -64,7 +63,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${outfit.variable}`}>
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem>
-          <StarField />
           <Navbar />
 
           <main className="main-content">{children}</main>
@@ -87,8 +85,7 @@ export default function RootLayout({
                 <a href="#contact">Contact</a>
               </div>
               <div className="footer-copy">
-                © {new Date().getFullYear()} Ritesh Yadav. Crafted with 💜 using
-                Next.js
+                © {new Date().getFullYear()} Ritesh Yadav. Built with Next.js & TypeScript.
               </div>
             </div>
           </footer>

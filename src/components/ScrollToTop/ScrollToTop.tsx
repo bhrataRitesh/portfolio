@@ -31,7 +31,6 @@ export default function ScrollToTop() {
         borderRadius: "var(--radius-sm)",
         background: "var(--bg-card)",
         border: "1px solid var(--border-color)",
-        backdropFilter: "blur(12px)",
         color: "var(--accent-primary)",
         display: "flex",
         alignItems: "center",
@@ -39,8 +38,7 @@ export default function ScrollToTop() {
         cursor: "pointer",
         opacity: isVisible ? 1 : 0,
         pointerEvents: isVisible ? "auto" : "none",
-        transform: isVisible ? "translateY(0)" : "translateY(10px)",
-        transition: "all 0.3s ease",
+        transition: "opacity 0.2s ease",
         boxShadow: "var(--shadow-md)",
       }}
     >
