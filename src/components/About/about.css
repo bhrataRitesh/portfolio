@@ -31,37 +31,45 @@
   font-size: 0.95rem;
 }
 
-/* Stats */
+/* Stats Grid — Clean 2x2 Layout to prevent cramped text-wrapping */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.75rem;
-  margin-top: 1.75rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+  margin-top: 1.5rem;
 }
 
 .stat-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 1rem 0.5rem;
-  text-align: center;
+  align-items: flex-start;
+  padding: 0.85rem 1.1rem;
+  text-align: left;
   background: var(--bg-tertiary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.stat-card:hover {
+  border-color: var(--accent-primary);
+  background-color: var(--bg-secondary);
 }
 
 .stat-value {
-  font-family: var(--font-outfit), sans-serif;
-  font-size: 1.6rem;
+  font-family: var(--font-outfit), var(--font-inter), sans-serif;
+  font-size: 1.45rem;
   font-weight: 700;
   color: var(--text-primary);
+  white-space: nowrap;
 }
 
 .stat-label {
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   color: var(--text-secondary);
   margin-top: 0.25rem;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .about-resume-box {
@@ -75,36 +83,102 @@
   gap: 0.6rem;
 }
 
-/* Clean Structured Capabilities Grid (Replaces 3D Wireframe Globe) */
-.capabilities-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
+/* Rich Structured Capabilities Matrix (Replaces Empty Void) */
+.capabilities-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
   margin-top: 0.5rem;
+  flex-grow: 1;
 }
 
-.capability-item {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
+.capability-matrix-card {
   padding: 0.85rem 1rem;
   background: var(--bg-tertiary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
   transition: border-color var(--transition-fast), background-color var(--transition-fast);
 }
 
-.capability-item:hover {
+.capability-matrix-card:hover {
   border-color: var(--accent-primary);
   background-color: var(--bg-secondary);
 }
 
-.capability-icon {
-  flex-shrink: 0;
+.capability-matrix-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.capability-matrix-category {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: var(--accent-primary);
+}
+
+.capability-matrix-techs {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.capability-tech-pill {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.capability-matrix-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.capability-matrix-impact {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.capabilities-matrix-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.85rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.matrix-footer-label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+}
+
+.matrix-footer-pill {
+  font-size: 0.72rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-weight: 500;
 }
 
 @media (max-width: 768px) {

@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { personalInfo, statsData, whatIBringData, leetcodeData } from "@/data/portfolioData";
+import { personalInfo, statsData, capabilitiesMatrix, leetcodeData } from "@/data/portfolioData";
 import Perspective3DCard from "@/components/UI3D/Perspective3DCard";
 import "./about.css";
 
@@ -49,27 +49,31 @@ function AnimatedCounter({ value, label }: { value: string; label: string }) {
   );
 }
 
-function CapabilitiesGrid() {
+function CapabilitiesMatrix() {
   return (
-    <div className="capabilities-grid">
-      {whatIBringData.map((item) => (
-        <div key={item} className="capability-item">
-          <svg
-            className="capability-icon"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="var(--accent-primary)"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="20 6 9 17 4 12" />
-          </svg>
-          <span className="capability-text">{item}</span>
+    <div className="capabilities-matrix">
+      {capabilitiesMatrix.map((item, idx) => (
+        <div key={idx} className="capability-matrix-card">
+          <div className="capability-matrix-head">
+            <span className="capability-matrix-category">{item.category}</span>
+            <div className="capability-matrix-techs">
+              {item.technologies.slice(0, 3).map((tech) => (
+                <span key={tech} className="capability-tech-pill">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+          <h4 className="capability-matrix-title">{item.title}</h4>
+          <p className="capability-matrix-impact">{item.impact}</p>
         </div>
       ))}
+      <div className="capabilities-matrix-footer">
+        <span className="matrix-footer-label">Core Engineering Strengths:</span>
+        <span className="matrix-footer-pill">115+ LeetCode DSA</span>
+        <span className="matrix-footer-pill">PM2 Root Cause Analysis</span>
+        <span className="matrix-footer-pill">SOLID & LLD</span>
+      </div>
     </div>
   );
 }
@@ -160,8 +164,11 @@ export default function About() {
             style={{ display: "flex", flexDirection: "column" }}
           >
             <Perspective3DCard maxTilt={5} scale={1.01} className="about-bring card" style={{ height: "100%", display: "flex", flexDirection: "column" }}>
-              <h3 className="about-card-title">What I Bring</h3>
-              <CapabilitiesGrid />
+              <h3 className="about-card-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                Core Technical Capabilities
+              </h3>
+              <CapabilitiesMatrix />
             </Perspective3DCard>
           </motion.div>
         </div>

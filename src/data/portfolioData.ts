@@ -354,10 +354,44 @@ export const projectsData = [
 ];
 
 export const statsData = [
-  { value: "1.5+", label: "Years Exp" },
+  { value: "1.5+", label: "Years Experience" },
   { value: "115+", label: "LeetCode Solved" },
-  { value: "4-5m→30s", label: "Latency Optimized" },
+  { value: "4-5m→30s", label: "Latency (~90% Cut)" },
   { value: "100%", label: "Sync Reliability" },
+];
+
+export interface CapabilityDomain {
+  title: string;
+  category: string;
+  technologies: string[];
+  impact: string;
+}
+
+export const capabilitiesMatrix: CapabilityDomain[] = [
+  {
+    title: "Event-Driven Queues & Async Pipelines",
+    category: "Distributed Systems",
+    technologies: ["RabbitMQ", "BullMQ", "Redis"],
+    impact: "Designed 3-queue architectures separating extraction, parent creation, and variation processing.",
+  },
+  {
+    title: "High-Throughput APIs & Marketplace Ingestion",
+    category: "Backend Architecture",
+    technologies: ["Node.js", "Express.js", "NestJS", "Amazon SP-API", "eBay API"],
+    impact: "Engineered batching pipelines of up to 30 ASINs per request, cutting import latency from 5m to 30s.",
+  },
+  {
+    title: "Database Concurrency & Vector Search",
+    category: "Data Engineering",
+    technologies: ["PostgreSQL", "MongoDB", "Redis", "pgvector", "SQL"],
+    impact: "Restructured blocking queries into asynchronous DB processing, eliminating connection pool pressure.",
+  },
+  {
+    title: "Cloud Deployments & Automated Testing",
+    category: "DevOps & Quality",
+    technologies: ["AWS EC2", "AWS IAM", "Docker", "PM2", "Playwright"],
+    impact: "Provisioned AWS EC2 with least-privilege IAM, automated CI/CD, and developed Playwright E2E/API tests.",
+  },
 ];
 
 export const whatIBringData = [
