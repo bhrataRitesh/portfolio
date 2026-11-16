@@ -211,14 +211,14 @@ export const experienceData = [
       },
     ],
     bullets: [
-      "Latency Optimization [C-A-R]: Addressed 4–5 minute import latencies for 500 products by engineering a RabbitMQ asynchronous processing pipeline with batching of up to 30 ASINs per request, cutting import time to 30 seconds.",
-      "Variation Sync Architecture [C-A-R]: Resolved catalog variation synchronization race conditions by designing a 3-queue RabbitMQ architecture (separating extraction, parent creation, and variation processing), ensuring atomic parent-child relationships.",
-      "Database Optimization [C-A-R]: Mitigated database connection pool exhaustion and missed updates under concurrent traffic by restructuring feature checks into asynchronous database operations, eliminating query blocking and ensuring 100% sync reliability.",
-      "Background Decoupling [C-A-R]: Protected web application response times during peak twice-daily marketplace syncs by building scheduled RabbitMQ background consumers, fully decoupling long-running updates from main application threads.",
-      "Marketplace Connectors [C-A-R]: Prevented marketplace synchronization downtime by building third-party API connectors for Amazon SP-API, eBay Trading API, and Zoho, featuring automated token refresh, response validation, and resilient SOAP/XML parsing.",
-      "Production Diagnostics [C-A-R]: Resolved critical production incidents by analyzing PM2 metrics and server-level diagnostics to identify root-cause bottlenecks, implementing rapid patches that restored system stability and minimized downtime.",
-      "Cloud Infrastructure [C-A-R]: Standardized live environment releases by provisioning AWS EC2 instances with least-privilege IAM configuration, containerizing services via Docker, and building automated GitLab CI/CD test and deployment pipelines.",
-      "Automated Quality Assurance [C-A-R]: Prevented regression defects across production releases by developing Playwright automated test suites covering critical user flows and APIs, while upholding team code quality through structured peer reviews.",
+      "Latency Optimization: Addressed 4–5 minute import latencies for 500 products by engineering a RabbitMQ asynchronous processing pipeline with batching of up to 30 ASINs per request, cutting import time to 30 seconds.",
+      "Variation Sync Architecture: Resolved catalog variation synchronization race conditions by designing a 3-queue RabbitMQ architecture (separating extraction, parent creation, and variation processing), ensuring atomic parent-child relationships.",
+      "Database Optimization: Mitigated database connection pool exhaustion and missed updates under concurrent traffic by restructuring feature checks into asynchronous database operations, eliminating query blocking and ensuring 100% sync reliability.",
+      "Background Decoupling: Protected web application response times during peak twice-daily marketplace syncs by building scheduled RabbitMQ background consumers, fully decoupling long-running updates from main application threads.",
+      "Marketplace Connectors: Prevented marketplace synchronization downtime by building third-party API connectors for Amazon SP-API, eBay Trading API, and Zoho, featuring automated token refresh, response validation, and resilient SOAP/XML parsing.",
+      "Production Diagnostics: Resolved critical production incidents by analyzing PM2 metrics and server-level diagnostics to identify root-cause bottlenecks, implementing rapid patches that restored system stability and minimized downtime.",
+      "Cloud Infrastructure: Standardized live environment releases by provisioning AWS EC2 instances with least-privilege IAM configuration, containerizing services via Docker, and building automated GitLab CI/CD test and deployment pipelines.",
+      "Automated Quality Assurance: Prevented regression defects across production releases by developing Playwright automated test suites covering critical user flows and APIs, while upholding team code quality through structured peer reviews.",
     ],
     technologies: [
       "Node.js",
@@ -259,7 +259,7 @@ export const experienceData = [
       },
     ],
     bullets: [
-      "Full-Stack Digital Ordering [C-A-R]: Modernized dine-in operations by replacing error-prone paper menus with a full-stack QR ordering platform built with Node.js and Express.js, integrating table-side digital menus, checkout, and Stripe payments.",
+      "Full-Stack Digital Ordering: Modernized dine-in operations by replacing error-prone paper menus with a full-stack QR ordering platform built with Node.js and Express.js, integrating table-side digital menus, checkout, and Stripe payments.",
     ],
     technologies: [
       "Node.js",
@@ -299,9 +299,9 @@ export const projectsData = [
       },
     ],
     bullets: [
-      "Modular Architecture [C-A-R]: Solved monolithic coupling by developing modular backend functionality using NestJS and PostgreSQL, enforcing strict separation of responsibilities for scalable and maintainable application design.",
-      "Asynchronous Worker Pipeline [C-A-R]: Prevented HTTP thread blocking during heavy media processing by implementing asynchronous background job queues using BullMQ and Redis, keeping API response latency under 50ms.",
-      "Semantic Search & Payments [C-A-R]: Overcame keyword-search limitations by implementing vector semantic search directly in PostgreSQL with pgvector, while securing financial course enrollments via Razorpay payment workflows.",
+      "Modular Architecture: Solved monolithic coupling by developing modular backend functionality using NestJS and PostgreSQL, enforcing strict separation of responsibilities for scalable and maintainable application design.",
+      "Asynchronous Worker Pipeline: Prevented HTTP thread blocking during heavy media processing by implementing asynchronous background job queues using BullMQ and Redis, keeping API response latency under 50ms.",
+      "Semantic Search & Payments: Overcame keyword-search limitations by implementing vector semantic search directly in PostgreSQL with pgvector, while securing financial course enrollments via Razorpay payment workflows.",
     ],
     technologies: [
       "NestJS",
@@ -336,8 +336,8 @@ export const projectsData = [
       },
     ],
     bullets: [
-      "Real-Time Matching [C-A-R]: Developed a full-stack platform with Next.js, React, and TypeScript, connecting daily wage laborers with verified contractors in real-time.",
-      "Escrow Payouts [C-A-R]: Engineered transactional escrow payout workflows and ledger state tracking with Razorpay integration, securing wage payments upon job completion.",
+      "Real-Time Matching: Developed a full-stack platform with Next.js, React, and TypeScript, connecting daily wage laborers with verified contractors in real-time.",
+      "Escrow Payouts: Engineered transactional escrow payout workflows and ledger state tracking with Razorpay integration, securing wage payments upon job completion.",
     ],
     technologies: [
       "Next.js",
