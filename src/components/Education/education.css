@@ -26,6 +26,10 @@
   transition: border-color var(--transition-fast);
 }
 
+.education-card:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
 .education-card:hover {
   border-color: var(--accent-primary);
 }
@@ -116,6 +120,10 @@
   .education-card {
     width: calc(100% - 3rem);
     margin-left: 3rem !important;
+  }
+
+  .education-card:not(:last-child) {
+    margin-bottom: 2rem;
   }
 
   .education-card .timeline-dot {
