@@ -34,7 +34,7 @@ All frontend UI code, components, styles, and layouts in this repository must st
 ### Content & Resume Standards
 - All project and experience bullet points must follow the **CAR (Challenge - Action - Result)** framework.
 - Contact details:
-  - Phone: `+91-9508505872`
+  - Phone: `+91-8434041818`
   - Email: `ratohikumar@gmail.com`
   - LeetCode: `https://leetcode.com/u/iamritesh16/`
   - Live Deployments (e.g., Shramik: `https://shramik-two.vercel.app`)

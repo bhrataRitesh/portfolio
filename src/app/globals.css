@@ -358,3 +358,37 @@ button {
     --section-gap: 3.5rem;
   }
 }
+
+/* ==========================================================================
+   Stone-in-Water Wave Theme View Transition
+   ========================================================================== */
+[data-theme-transitioning="true"] *,
+[data-theme-transitioning="true"] *::before,
+[data-theme-transitioning="true"] *::after {
+  transition: none !important;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 999;
+}
+
+[data-wave-bending="true"]::view-transition-image-pair(root) {
+  filter: url(#water-surface-bend);
+}
+
+.theme-water-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}

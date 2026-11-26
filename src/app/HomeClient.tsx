@@ -2,17 +2,23 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { personalInfo, socialLinks } from "@/data/portfolioData";
+import {
+  personalInfo,
+  socialLinks,
+  contactInfo,
+  recruiterQuickPitchText,
+} from "@/data/portfolioData";
+import { usePortfolio, type ExplorerLens } from "@/context/PortfolioContext";
+import { useLeetCode } from "@/hooks/useLeetCode";
 import TypingEffect from "@/components/TypingEffect/TypingEffect";
 import TechMarquee from "@/components/TechMarquee/TechMarquee";
+import HeroWorkbench from "@/components/HeroWorkbench/HeroWorkbench";
 import About from "@/components/About/About";
 import Education from "@/components/Education/Education";
 import Skills from "@/components/Skills/Skills";
 import Experience from "@/components/Experience/Experience";
 import FeaturedProjects from "@/components/FeaturedProjects/FeaturedProjects";
 import Contact from "@/components/Contact/Contact";
-import Perspective3DCard from "@/components/UI3D/Perspective3DCard";
-import Hero3DCanvas from "@/components/UI3D/Hero3DCanvas";
 import "./home.css";
 
 interface ProjectData {
@@ -23,27 +29,45 @@ interface ProjectData {
   technologies: string[];
   imageUrl: string;
   featured?: boolean;
+  liveUrl?: string;
+  githubUrl?: string;
 }
 
-const containerVars = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.1 },
-  },
-};
-
-const itemVars = {
-  hidden: { opacity: 0, y: 15 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.35, ease: "easeOut" as const },
-  },
-};
+const LENS_OPTIONS: { id: ExplorerLens; label: string; hint: string }[] = [
+  { id: "curious", label: "Curious Tour", hint: "Interactive intro & stories" },
+  { id: "recruiter", label: "60s Recruiter Brief", hint: "Fast impact & pitch" },
+  { id: "engineer", label: "Systems View", hint: "Queues & JSON payload" },
+];
 
 export default function HomeClient({ projects }: { projects: ProjectData[] }) {
-  const [heroVisualMode, setHeroVisualMode] = useState<"3d" | "code">("3d");
+  const {
+    explorerLens,
+    setExplorerLens,
+    setHeroWorkbenchTab,
+    openCommandPalette,
+  } = usePortfolio();
+
+  const { profile: leetcode } = useLeetCode();
+  const [copiedField, setCopiedField] = useState<"email" | "pitch" | null>(null);
+
+  const handleSelectLens = (lens: ExplorerLens) => {
+    setExplorerLens(lens);
+    if (lens === "curious") setHeroWorkbenchTab("intro");
+    if (lens === "engineer") setHeroWorkbenchTab("simulator");
+    if (lens === "recruiter") setHeroWorkbenchTab("api");
+  };
+
+  const handleCopy = async (kind: "email" | "pitch") => {
+    const value =
+      kind === "email" ? contactInfo.email : recruiterQuickPitchText;
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopiedField(kind);
+      setTimeout(() => setCopiedField(null), 2000);
+    } catch {
+      // Ignore clipboard failure
+    }
+  };
 
   const handleScrollToSection = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -63,37 +87,107 @@ export default function HomeClient({ projects }: { projects: ProjectData[] }) {
             {/* Left Column */}
             <motion.div
               className="hero-content"
-              variants={containerVars}
-              initial="hidden"
-              animate="show"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.25 }}
             >
-              <motion.div variants={itemVars} className="hero-badge">
-                <span className="badge-dot" />
-                {personalInfo.availableStatus}
-              </motion.div>
+              <div className="hero-top-row">
+                <div className="hero-badge">
+                  <span className="badge-dot" />
+                  {personalInfo.availableStatus}
+                </div>
+                <button
+                  type="button"
+                  onClick={openCommandPalette}
+                  className="hero-cmd-btn"
+                  title="Open Keyboard Command Palette"
+                >
+                  <span>Explore via</span>
+                  <kbd className="hero-kbd">⌘K</kbd>
+                </button>
+              </div>
 
-              <motion.h1 variants={itemVars} className="hero-title">
+              <h1 className="hero-title">
                 Hi, I&apos;m{" "}
                 <span className="hero-name">{personalInfo.firstName}</span>
                 <span className="hero-role">
                   <TypingEffect words={personalInfo.typingRoles} />
                 </span>
-              </motion.h1>
+              </h1>
 
-              <motion.p variants={itemVars} className="hero-description">
-                {personalInfo.bio}
-              </motion.p>
+              <p className="hero-description">
+                {personalInfo.bio} Cut 500-product Amazon syncs from{" "}
+                <strong className="hero-highlight-metric">4–5 mins → ~30s</strong>{" "}
+                using 3-queue RabbitMQ architectures.
+              </p>
 
-              <motion.div variants={itemVars} className="hero-focus">
-                <span className="hero-focus-label">Currently Focused On</span>
-                {personalInfo.currentFocus.map((item) => (
-                  <span key={item} className="focus-tag">
-                    {item}
-                  </span>
-                ))}
-              </motion.div>
+              {/* Adaptive Visitor Exploration Lens Switcher */}
+              <div className="hero-lens-block">
+                <span className="hero-focus-label">Explore Mode:</span>
+                <div className="hero-lens-group" role="group" aria-label="Visitor mode selector">
+                  {LENS_OPTIONS.map((opt) => (
+                    <button
+                      key={opt.id}
+                      type="button"
+                      className={`hero-lens-btn ${
+                        explorerLens === opt.id ? "active" : ""
+                      }`}
+                      onClick={() => handleSelectLens(opt.id)}
+                      title={opt.hint}
+                    >
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-              <motion.div variants={itemVars} className="hero-cta">
+              {/* Conditional 60s Recruiter Brief Strip */}
+              {explorerLens === "recruiter" && (
+                <div className="recruiter-brief-card">
+                  <div className="recruiter-brief-head">
+                    <span className="recruiter-brief-title">
+                      60-Second Candidate Snapshot
+                    </span>
+                    <button
+                      type="button"
+                      className="recruiter-pitch-copy"
+                      onClick={() => handleCopy("pitch")}
+                    >
+                      {copiedField === "pitch"
+                        ? "✓ Copied Brief for Slack/ATS"
+                        : "Copy Brief"}
+                    </button>
+                  </div>
+                  <div className="recruiter-brief-grid">
+                    <div>
+                      <strong>Experience:</strong> 1.5+ yrs @ Webkul Software
+                    </div>
+                    <div>
+                      <strong>Core Stack:</strong> Node.js, TS, RabbitMQ, PostgreSQL
+                    </div>
+                    <div>
+                      <strong>Top Impact:</strong> ~90% import latency cut (30s)
+                    </div>
+                    <div>
+                      <strong>DSA Live:</strong> {leetcode.totalSolved}+ LeetCode (C++)
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Focus Tags (Shown in Curious & Engineer Modes) */}
+              {explorerLens !== "recruiter" && (
+                <div className="hero-focus">
+                  <span className="hero-focus-label">Currently Focused On</span>
+                  {personalInfo.currentFocus.map((item) => (
+                    <span key={item} className="focus-tag">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              <div className="hero-cta">
                 <a
                   href="#projects"
                   className="btn btn-primary"
@@ -110,8 +204,8 @@ export default function HomeClient({ projects }: { projects: ProjectData[] }) {
                   title="Download Resume PDF"
                 >
                   <svg
-                    width="17"
-                    height="17"
+                    width="16"
+                    height="16"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -125,22 +219,24 @@ export default function HomeClient({ projects }: { projects: ProjectData[] }) {
                   </svg>
                   Resume PDF
                 </a>
-                <a
-                  href="#contact"
+                <button
+                  type="button"
+                  onClick={() => handleCopy("email")}
                   className="btn btn-secondary"
-                  onClick={(e) => handleScrollToSection(e, "contact")}
+                  title="Copy Ritesh's Email Address"
                 >
-                  Get In Touch
-                </a>
-              </motion.div>
+                  {copiedField === "email" ? "✓ Copied Email" : "Copy Email"}
+                </button>
+              </div>
 
-              <motion.div variants={itemVars} className="hero-social">
+              <div className="hero-social">
                 <a
                   href={socialLinks.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-icon"
                   aria-label="GitHub"
+                  title="GitHub (@bhrataRitesh)"
                 >
                   <svg
                     width="20"
@@ -162,6 +258,7 @@ export default function HomeClient({ projects }: { projects: ProjectData[] }) {
                   rel="noopener noreferrer"
                   className="social-icon"
                   aria-label="LinkedIn"
+                  title="LinkedIn Profile"
                 >
                   <svg
                     width="20"
@@ -199,6 +296,7 @@ export default function HomeClient({ projects }: { projects: ProjectData[] }) {
                   href={socialLinks.email}
                   className="social-icon"
                   aria-label="Email"
+                  title={contactInfo.email}
                 >
                   <svg
                     width="20"
@@ -214,119 +312,29 @@ export default function HomeClient({ projects }: { projects: ProjectData[] }) {
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                   </svg>
                 </a>
-              </motion.div>
+              </div>
             </motion.div>
 
-            {/* Right Column — 3D Architecture & Code Terminal */}
+            {/* Right Column — Interactive Hero Workbench */}
             <motion.div
               className="hero-visual"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
             >
               <div className="hero-illustration">
-                <Perspective3DCard maxTilt={5} scale={1.01}>
-                  <div className="hero-code-window">
-                    <div className="code-window-header">
-                      <div className="code-window-dots">
-                        <span className="code-dot red" />
-                        <span className="code-dot yellow" />
-                        <span className="code-dot green" />
-                      </div>
-                      <div className="code-window-tabs">
-                        <button
-                          type="button"
-                          className={`code-tab-btn ${heroVisualMode === "3d" ? "active" : ""}`}
-                          onClick={() => setHeroVisualMode("3d")}
-                          title="Interactive 3D Distributed Architecture Scene"
-                        >
-                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                            <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                            <line x1="12" y1="22.08" x2="12" y2="12" />
-                          </svg>
-                          3D Architecture
-                        </button>
-                        <button
-                          type="button"
-                          className={`code-tab-btn ${heroVisualMode === "code" ? "active" : ""}`}
-                          onClick={() => setHeroVisualMode("code")}
-                          title="Developer Profile Config"
-                        >
-                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                            <polyline points="16 18 22 12 16 6" />
-                            <polyline points="8 6 2 12 8 18" />
-                          </svg>
-                          developer.ts
-                        </button>
-                      </div>
-                    </div>
-
-                    {heroVisualMode === "3d" ? (
-                      <Hero3DCanvas />
-                    ) : (
-                      <div className="code-window-body">
-                        <span className="code-line">
-                          <span className="code-keyword">const</span>{" "}
-                          <span className="code-variable">developer</span>{" "}
-                          <span className="code-bracket">=</span>{" "}
-                          <span className="code-bracket">{"{"}</span>
-                        </span>
-                        <span className="code-line">
-                          {"  "}
-                          <span className="code-variable">name</span>:{" "}
-                          <span className="code-string">&quot;{personalInfo.name}&quot;</span>,
-                        </span>
-                        <span className="code-line">
-                          {"  "}
-                          <span className="code-variable">role</span>:{" "}
-                          <span className="code-string">&quot;{personalInfo.title}&quot;</span>,
-                        </span>
-                        <span className="code-line">
-                          {"  "}
-                          <span className="code-variable">skills</span>:{" "}
-                          <span className="code-bracket">[</span>
-                          <span className="code-string">&quot;Node.js&quot;</span>,{" "}
-                          <span className="code-string">&quot;TypeScript&quot;</span>,{" "}
-                          <span className="code-string">&quot;RabbitMQ&quot;</span>,{" "}
-                          <span className="code-string">&quot;PostgreSQL&quot;</span>,{" "}
-                          <span className="code-string">&quot;Redis&quot;</span>
-                          <span className="code-bracket">]</span>,
-                        </span>
-                        <span className="code-line">
-                          {"  "}
-                          <span className="code-variable">passion</span>:{" "}
-                          <span className="code-string">&quot;Building scalable products&quot;</span>,
-                        </span>
-                        <span className="code-line">
-                          {"  "}
-                          <span className="code-function">hireable</span>:{" "}
-                          <span className="code-keyword">true</span>,
-                        </span>
-                        <span className="code-line">
-                          <span className="code-bracket">{"}"}</span>;
-                        </span>
-                        <span className="code-line">&nbsp;</span>
-                        <span className="code-line">
-                          <span className="code-comment">
-                            {"// Let's build something amazing together"}
-                          </span>
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </Perspective3DCard>
+                <HeroWorkbench />
               </div>
             </motion.div>
           </div>
 
           {/* Scroll Indicator */}
           <div className="scroll-indicator">
-            <span>Scroll Down</span>
+            <span>Scroll to Explore Full Story</span>
             <div className="scroll-arrow">
               <svg
-                width="20"
-                height="20"
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"

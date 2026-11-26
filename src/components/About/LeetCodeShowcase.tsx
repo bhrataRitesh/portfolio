@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import type { LeetCodeLiveProfile } from "@/types/leetcode";
-import Perspective3DCard from "@/components/UI3D/Perspective3DCard";
+import { usePortfolio } from "@/context/PortfolioContext";
 
 function formatLanguageName(lang: string): string {
   const map: Record<string, string> = {
@@ -41,14 +42,20 @@ export default function LeetCodeShowcase({
   profile,
   isLoading,
 }: LeetCodeShowcaseProps) {
+  const [showRawJson, setShowRawJson] = useState(false);
+  const { markExplored } = usePortfolio();
   const safeTotal = profile.totalSolved > 0 ? profile.totalSolved : 1;
 
+  const toggleJson = () => {
+    const next = !showRawJson;
+    setShowRawJson(next);
+    if (next) {
+      markExplored("live-leetcode");
+    }
+  };
+
   return (
-    <Perspective3DCard
-      maxTilt={3.5}
-      scale={1.006}
-      className="about-leetcode card"
-    >
+    <div className="about-leetcode card">
       {/* Header */}
       <div className="about-leetcode-header">
         <div className="about-leetcode-title-group">
@@ -87,27 +94,67 @@ export default function LeetCodeShowcase({
           </div>
         </div>
 
-        <a
-          href={profile.profileUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="about-leetcode-btn"
-        >
-          <span>View LeetCode Profile</span>
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+        <div className="lc-header-actions">
+          <button
+            type="button"
+            onClick={toggleJson}
+            className={`lc-json-toggle ${showRawJson ? "active" : ""}`}
+            title="Inspect raw /api/leetcode JSON response"
           >
-            <path d="M7 17l9.2-9.2M17 17V8H8" />
-          </svg>
-        </a>
+            {showRawJson ? "Hide API JSON" : "{ } Inspect API"}
+          </button>
+          <a
+            href={profile.profileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="about-leetcode-btn"
+          >
+            <span>View LeetCode Profile</span>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M7 17l9.2-9.2M17 17V8H8" />
+            </svg>
+          </a>
+        </div>
       </div>
+
+      {showRawJson && (
+        <div className="lc-json-drawer">
+          <div className="lc-json-bar">
+            <span>GET /api/leetcode (live GraphQL proxy • 30s revalidate)</span>
+            <span>{profile.isLive ? "200 OK (Live)" : "200 OK (Fallback)"}</span>
+          </div>
+          <pre className="lc-json-code">
+            <code>
+              {JSON.stringify(
+                {
+                  username: profile.username,
+                  totalSolved: profile.totalSolved,
+                  acceptanceRate: profile.acceptanceRate,
+                  ranking: profile.ranking,
+                  difficulty: {
+                    easy: profile.easy.solved,
+                    medium: profile.medium.solved,
+                    hard: profile.hard.solved,
+                  },
+                  languages: profile.languages,
+                  lastUpdated: profile.lastUpdated,
+                },
+                null,
+                2
+              )}
+            </code>
+          </pre>
+        </div>
+      )}
 
       {/* Main Stats & Difficulty Breakdown */}
       <div className="about-leetcode-body">
@@ -267,6 +314,6 @@ export default function LeetCodeShowcase({
           )}
         </div>
       </div>
-    </Perspective3DCard>
+    </div>
   );
 }

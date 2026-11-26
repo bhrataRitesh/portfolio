@@ -157,6 +157,52 @@
   transition: opacity var(--transition-fast);
 }
 
+.featured-arch-preview {
+  width: 100%;
+  height: 100%;
+  padding: 1.25rem;
+  background: var(--bg-tertiary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.arch-preview-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+}
+
+.arch-preview-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.arch-preview-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.arch-preview-chip {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
 .featured-overlay {
   position: absolute;
   inset: 0;

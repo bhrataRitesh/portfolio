@@ -3,6 +3,9 @@ import { Inter, Outfit } from "next/font/google";
 import Navbar from "@/components/Navbar/Navbar";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 import Chatbot from "@/components/Chatbot/Chatbot";
+import CommandPalette from "@/components/CommandPalette/CommandPalette";
+import ConsoleGreeting from "@/components/ConsoleGreeting";
+import { PortfolioProvider } from "@/context/PortfolioContext";
 import { ThemeProvider } from "@/components/ThemeSwitcher/ThemeProvider";
 import "./globals.css";
 
@@ -39,6 +42,12 @@ export const metadata: Metadata = {
     "REST APIs",
     "Docker",
     "Playwright",
+    "Python",
+    "Drizzle ORM",
+    "Turborepo",
+    "Microservices",
+    "SOLID Principles",
+    "Low-Level Design",
     "Amazon SP-API",
     "eBay APIs",
     "Stripe",
@@ -63,35 +72,40 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${outfit.variable}`}>
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem>
-          <Navbar />
+          <PortfolioProvider>
+            <ConsoleGreeting />
+            <CommandPalette />
+            <Navbar />
 
-          <main className="main-content">{children}</main>
+            <main className="main-content">{children}</main>
 
-          <footer className="site-footer">
-            <div className="container footer-inner">
-              <div className="footer-brand">
-                <span className="footer-logo">
-                  R<span style={{ color: "var(--accent-primary)" }}>.</span>
-                </span>
-                <p className="footer-tagline">
-                  Building digital experiences with modern technologies.
-                </p>
+            <footer className="site-footer">
+              <div className="container footer-inner">
+                <div className="footer-brand">
+                  <span className="footer-logo">
+                    R<span style={{ color: "var(--accent-primary)" }}>.</span>
+                  </span>
+                  <p className="footer-tagline">
+                    Backend &amp; Full-Stack Engineer • Noida, IN (Open for Remote &amp; Hybrid Roles)
+                  </p>
+                </div>
+                <div className="footer-links">
+                  <a href="#home">Home</a>
+                  <a href="#about">About</a>
+                  <a href="#skills">Skills</a>
+                  <a href="#experience">Experience</a>
+                  <a href="#projects">Projects</a>
+                  <a href="#contact">Contact</a>
+                </div>
+                <div className="footer-copy">
+                  © {new Date().getFullYear()} Ritesh Yadav • Built cleanly with Next.js 16 &amp; TypeScript • Try <kbd className="wb-kbd">⌘K</kbd> anytime
+                </div>
               </div>
-              <div className="footer-links">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-              </div>
-              <div className="footer-copy">
-                © {new Date().getFullYear()} Ritesh Yadav. Built with Next.js & TypeScript.
-              </div>
-            </div>
-          </footer>
+            </footer>
 
-          <ScrollToTop />
-          <Chatbot />
+            <ScrollToTop />
+            <Chatbot />
+          </PortfolioProvider>
         </ThemeProvider>
       </body>
     </html>

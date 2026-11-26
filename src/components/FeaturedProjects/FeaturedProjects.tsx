@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import Perspective3DCard from "@/components/UI3D/Perspective3DCard";
+import { usePortfolio } from "@/context/PortfolioContext";
 import "./featured-projects.css";
 
 interface FeaturedProjectsProps {
@@ -21,6 +21,7 @@ interface FeaturedProjectsProps {
 }
 
 export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
+  const { askAssistant } = usePortfolio();
   const [activeSandbox, setActiveSandbox] = useState<{ title: string; url: string } | null>(null);
   const [iframeLoading, setIframeLoading] = useState(true);
 
@@ -87,7 +88,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                 viewport={{ once: true }}
                 style={{ display: "flex", flexDirection: "column" }}
               >
-                <Perspective3DCard maxTilt={4} scale={1.01} className="featured-card card" style={{ height: "100%", display: "flex", flexDirection: "column" }}>
+                <article className="featured-card card" style={{ height: "100%", display: "flex", flexDirection: "column" }}>
                 {/* Browser Mockup Image Container */}
                 <div className="featured-card-browser">
                   {/* macOS Top Chrome Header */}
@@ -133,7 +134,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                         GitHub ↗
                       </a>
                     ) : (
-                      <span className="browser-dummy-space" />
+                      <span className="browser-github-tag">Private Repo</span>
                     )}
                   </div>
 
@@ -145,13 +146,29 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                       tabIndex={-1}
                       aria-label={project.title}
                     >
-                      {project.imageUrl && (
+                      {project.imageUrl ? (
                         <div
                           className="featured-bg"
                           style={{
                             backgroundImage: `url(${project.imageUrl})`,
                           }}
                         />
+                      ) : (
+                        <div className="featured-arch-preview" aria-hidden="true">
+                          <div className="arch-preview-badge">
+                            {project.technologies.slice(0, 3).join(" • ")}
+                          </div>
+                          <div className="arch-preview-title">
+                            {project.title.split("—")[0].trim()}
+                          </div>
+                          <div className="arch-preview-stack">
+                            {project.technologies.slice(0, 6).map((t) => (
+                              <span key={t} className="arch-preview-chip">
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
                       )}
                       <div className="featured-overlay" />
                     </Link>
@@ -270,6 +287,14 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                     </Link>
 
                     <div className="featured-card-actions">
+                      <button
+                        type="button"
+                        onClick={() => askAssistant(project.title)}
+                        className="featured-github-btn"
+                        title="Ask Assistant about this project's architecture"
+                      >
+                        <span>Ask Q&amp;A</span>
+                      </button>
                       {project.liveUrl ? (
                         <>
                           <button
@@ -330,7 +355,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                     </div>
                   </div>
                 </div>
-                </Perspective3DCard>
+                </article>
               </motion.div>
             );
           })}

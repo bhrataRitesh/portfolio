@@ -16,13 +16,13 @@ export interface BotReply {
 }
 
 export const initialSuggestions = [
-  "About Ritesh",
+  "30s Backend Pitch",
+  "Favorite Engineering Win",
+  "How do you debug 2 AM bugs?",
+  "Topics to Grill Ritesh On",
   "LeetCode & DSA",
-  "Work Experience",
-  "Technical Skills",
   "Featured Projects",
   "Download Resume",
-  "Education",
   "Contact Info",
 ];
 
@@ -38,6 +38,46 @@ export function getBotResponse(input: string): BotReply {
 
   const hasWord = (...words: string[]) =>
     words.some((w) => tokens.includes(w));
+
+  // 0A. RECRUITER 30-SECOND PITCH / INTERVIEW GRILL TOPICS
+  if (has("pitch", "30s", "30-second", "10 seconds", "hire", "why hire")) {
+    return {
+      text: `🎯 **30-Second Recruiter & Engineering Lead Pitch:**\n\n• **Impact**: Cut 500-product Amazon sync latency by **~90%** (4–5 mins → ~30s) at Webkul using a 3-queue RabbitMQ pipeline + 30-ASIN request batching.\n• **Reliability**: Eliminated DB connection pool exhaustion & race conditions across concurrent catalog syncs (100% sync integrity, sub-100ms checkout response).\n• **Shipping Mindset**: Built **EduYug** (NestJS + pgvector RAG + BullMQ) & **Shramik v2** (live Next.js 16 + Voice AI + Razorpay escrow).\n• **Availability**: Based in Noida, IN • **Open for Backend / Full-Stack opportunities** (Remote / Hybrid).`,
+      actionLink: {
+        label: "Download ATS Resume (PDF)",
+        url: "/Ritesh_Yadav_Resume.pdf",
+        isDownload: true,
+      },
+      suggestions: [
+        "Topics to Grill Ritesh On",
+        "Favorite Engineering Win",
+        "Contact Info",
+      ],
+    };
+  }
+
+  if (has("grill", "round 1", "interview prompt", "interview", "ask")) {
+    return {
+      text: `💡 **Great Questions to Ask Ritesh on an Interview Call:**\n\n1. **Queue Topology Trade-offs**: *"Why did splitting Webkul syncs into 3 RabbitMQ queues beat single-queue retries when child variations arrived before parent SKUs?"*\n2. **Connection Pool Isolation**: *"How did you use PM2 metrics to separate blocking feature checks into async DB workers cleanly?"*\n3. **Vector Search in Postgres**: *"In EduYug, why keep pgvector cosine similarity inside PostgreSQL 16 instead of adopting Pinecone?"*\n4. **Financial Consistency**: *"How does Shramik's Razorpay double-entry escrow ledger prevent race conditions on duplicate webhooks?"*`,
+      suggestions: [
+        "30s Backend Pitch",
+        "Featured Projects",
+        "Download Resume",
+        "Contact Info",
+      ],
+    };
+  }
+
+  if (has("favorite", "2 am", "bug", "incident", "pm2", "catalog import latency", "variation sync pipeline", "database concurrency")) {
+    return {
+      text: `🛠️ **Production War Stories & Debugging Playbook:**\n\n• **The 5-Minute Sync Bottleneck**: Amazon 500-product imports timed out constantly from 1-by-1 API calls. Batching **30 ASINs/req** across a **3-queue RabbitMQ** architecture (extract → parent → variation) dropped syncs to **~30 seconds** with 0 rate-limit bans.\n• **The 2 AM Playbook**: Never guess—pull **PM2 event-loop metrics**, check RabbitMQ unacked depth + MySQL/Postgres pool wait states, isolate locking transactions, patch deterministically, and lock the path with **Playwright E2E/API** CI checks.`,
+      suggestions: [
+        "Topics to Grill Ritesh On",
+        "Technical Skills",
+        "Featured Projects",
+      ],
+    };
+  }
 
   // 1. GREETINGS
   if (
@@ -134,8 +174,102 @@ export function getBotResponse(input: string): BotReply {
     }
   }
 
-  // 6. PROJECTS / EDUYUG / SHRAMIK
-  if (has("project", "projects", "eduyug", "studynotion", "shramik", "apps", "built", "build", "portfolio")) {
+  // 6. PROJECTS / ALL 7 FEATURED CASE STUDIES
+  if (
+    has(
+      "project",
+      "projects",
+      "eduyug",
+      "studynotion",
+      "shramik",
+      "jobsearch",
+      "acquisitions",
+      "microservices",
+      "razorpay",
+      "cs-cart",
+      "cscart",
+      "modcart",
+      "laravel",
+      "sanctum",
+      "escrow",
+      "turborepo",
+      "gateway",
+      "gof",
+      "lld",
+      "drizzle",
+      "arcjet",
+      "scraper",
+      "ats",
+      "apps",
+      "built",
+      "build",
+      "portfolio"
+    )
+  ) {
+    if (has("laravel", "sanctum", "scramble")) {
+      return {
+        text: `🏗️ **Laravel Marketplace — Multi-Vendor Escrow & Concurrency API** (2026)\n\nA high-concurrency headless marketplace API built with **Laravel 12**, **PHP 8.2+**, **MySQL 8.0**, and **Sanctum RBAC**, using deterministic \`SELECT ... FOR UPDATE\` pessimistic row locking to eliminate overselling & deadlocks, double-entry escrow settlements, timing-safe HMAC-SHA256 webhooks, and live Scramble OpenAPI docs.\n\n**Stack:** Laravel, PHP, MySQL, Sanctum RBAC, Escrow Ledger, OpenAPI (Scramble)`,
+        actionLink: {
+          label: "View Laravel Marketplace on GitHub ↗",
+          url: "https://github.com/bhrataRitesh/laravel-marketplace-escrow-api",
+        },
+        suggestions: ["CS-Cart Razorpay Gateway", "ModCart Monorepo", "EduYug Details"],
+      };
+    }
+    if (has("jobsearch", "scraper", "ats", "greenhouse", "lever", "workday")) {
+      return {
+        text: `🔍 **JobSearch — City-Based ATS Scraper & Aggregator** (2026)\n\nA phase-based Python CLI tool that discovers software companies by city (Google Places API, Clutch.co, Naukri.com), locates career pages, and scrapes **Greenhouse, Lever, and Workday** ATS APIs with **BeautifulSoup + Playwright** fallback.\n\n**Stack:** Python, Playwright, BeautifulSoup, Google Places API, Greenhouse/Lever APIs`,
+        actionLink: {
+          label: "View JobSearch on GitHub ↗",
+          url: "https://github.com/bhrataRitesh/jobsearch",
+        },
+        suggestions: ["Acquisitions API", "Microservices Repo", "EduYug Details"],
+      };
+    }
+
+    if (has("acquisitions", "drizzle", "arcjet", "neon")) {
+      return {
+        text: `🛡️ **Acquisitions — Production Express 5 & Drizzle API** (2025)\n\nA production-hardened layered REST API built with **Express 5**, **Neon Serverless PostgreSQL**, **Drizzle ORM**, **Zod**, **Arcjet** bot/rate-limit protection, **Helmet**, **JWT**, **Winston** logging, **Jest + Supertest** tests, and Docker dev/prod CI/CD.\n\n**Stack:** Node.js, Express 5, PostgreSQL, Drizzle ORM, Zod, Arcjet, Jest, Docker`,
+        actionLink: {
+          label: "View Acquisitions on GitHub ↗",
+          url: "https://github.com/bhrataRitesh/acquisitions",
+        },
+        suggestions: ["JobSearch Scraper", "Microservices Repo", "Shramik Details"],
+      };
+    }
+
+    if (has("razorpay", "cs-cart", "cscart", "gateway", "gof", "lld")) {
+      return {
+        text: `💳 **CS-Cart Razorpay Payment Gateway (SOLID & GoF LLD)** (2026)\n\nAn enterprise PHP add-on for CS-Cart & Multi-Vendor (4.12.x–4.21.x) engineered with **8 GoF Design Patterns** (Strategy, Factory, Facade, Adapter, Repository, Builder, DTO, Observer), timing-safe \`hash_equals()\` HMAC-SHA256 verification, fluent parameterized SQL \`QueryBuilder\`, and idempotent async webhooks.\n\n**Stack:** PHP, CS-Cart, Razorpay API, MySQL, SOLID & GoF LLD`,
+        actionLink: {
+          label: "View CS-Cart Razorpay on GitHub ↗",
+          url: "https://github.com/bhrataRitesh/cscart-razorpay-payment-gateway",
+        },
+        suggestions: ["ModCart Monorepo", "EduYug Details", "Shramik Details"],
+      };
+    }
+
+    if (has("modcart", "turborepo", "vendor-panel", "storefront")) {
+      return {
+        text: `🛒 **ModCart — Multi-Vendor eCommerce Monorepo** (2026)\n\nA multi-vendor eCommerce platform built with **Node.js, TypeScript, Turborepo, pnpm workspaces, and Docker Compose**, separating \`storefront\`, \`vendor-panel\`, and \`admin-panel\` with shared \`@modcart/db\` packages.\n\n**Stack:** TypeScript, Node.js, Turborepo, pnpm Workspaces, Docker Compose`,
+        actionLink: {
+          label: "View ModCart on GitHub ↗",
+          url: "https://github.com/bhrataRitesh/modcart",
+        },
+        suggestions: ["CS-Cart Razorpay Gateway", "EduYug Details", "Work Experience"],
+      };
+    }
+
+    if (has("microservices", "notification service", "task service", "user service")) {
+      return {
+        text: `🐇 **Event-Driven Microservices (RabbitMQ + Docker)** (2025)\n\nThree independent containerized Node.js services (**User Service**, **Task Service**, **Notification Service**) with **MongoDB** persistence and **RabbitMQ** AMQP async event queues orchestrated via Docker Compose.\n\n**Stack:** Node.js, Express.js, RabbitMQ, MongoDB, Docker Compose`,
+        actionLink: {
+          label: "View Microservices on GitHub ↗",
+          url: "https://github.com/bhrataRitesh/microservices",
+        },
+        suggestions: ["Acquisitions API", "JobSearch Scraper", "EduYug Details"],
+      };
+    }
     if (has("eduyug", "studynotion", "course", "lms", "edtech")) {
       const p = projectsData.find((x) => x.title.toLowerCase().includes("eduyug")) || projectsData[0];
       return {
@@ -161,12 +295,12 @@ export function getBotResponse(input: string): BotReply {
     }
 
     return {
-      text: `🚀 **Featured Projects by Ritesh:**\n\n1. **EduYug** (May 2025)\nAI-augmented course marketplace built with NestJS 10, Next.js 14, PostgreSQL 16 (pgvector), and Redis 7, featuring timestamped in-browser RAG AI tutoring and adaptive bitrate HLS.js streaming.\n*Stack: NestJS 10, Next.js 14, pgvector, Redis, BullMQ, FastAPI, Docker, Razorpay*\n\n2. **Shramik v2** (Dec 2024 – Present) — [Live Demo](https://shramik-two.vercel.app)\nReal-time labor marketplace with Voice AI search for daily wage workers, government e-Shram verification, and Razorpay escrow ledger.\n*Stack: Next.js 16, React 19, TypeScript, MongoDB, Razorpay, Voice AI*`,
+      text: `🚀 **Featured Projects by Ritesh (8 Case Studies):**\n\n1. **Laravel Marketplace** (2026) — Laravel 12 + MySQL 8.0 API with \`SELECT ... FOR UPDATE\` pessimistic locking, Sanctum RBAC & double-entry escrow settlement.\n2. **CS-Cart Razorpay Gateway** (2026) — Enterprise PHP payment gateway with 8 GoF patterns, fluent QueryBuilder, timing-safe HMAC & async webhooks.\n3. **JobSearch Aggregator** (2026) — Python CLI discovering companies by city & scraping Greenhouse/Lever/Workday ATS + Playwright.\n4. **ModCart** (2026) — TypeScript + Turborepo multi-vendor eCommerce monorepo (\`storefront\`, \`vendor-panel\`, \`admin-panel\`).\n5. **Event-Driven Microservices** (2025) — 3 containerized Node.js services communicating via RabbitMQ AMQP & MongoDB.\n6. **Acquisitions API** (2025) — Express 5 + Drizzle ORM + Neon Postgres + Arcjet security + Jest/Supertest + Docker CI/CD.\n7. **EduYug** (2025) — NestJS 10 + pgvector RAG AI tutoring + BullMQ FFmpeg HLS + Razorpay.\n8. **Shramik v2** ([Live Demo](https://shramik-two.vercel.app)) — Next.js 16 + Voice AI labor marketplace + Razorpay escrow.`,
       suggestions: [
+        "Laravel Marketplace",
+        "CS-Cart Razorpay Gateway",
+        "JobSearch Scraper",
         "EduYug Details",
-        "Shramik Details",
-        "Technical Skills",
-        "Download Resume",
       ],
     };
   }
@@ -207,6 +341,13 @@ export function getBotResponse(input: string): BotReply {
       "iam",
       "pm2",
       "playwright",
+      "python",
+      "php",
+      "drizzle",
+      "turborepo",
+      "solid",
+      "design pattern",
+      "design patterns",
       "copilot",
       "claude"
     )

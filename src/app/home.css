@@ -23,6 +23,15 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.hero-top-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
 }
 
 .hero-badge {
@@ -37,6 +46,132 @@
   font-size: 0.8rem;
   font-weight: 500;
   color: #22c55e;
+}
+
+.hero-cmd-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.28rem 0.6rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.hero-cmd-btn:hover {
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+.hero-kbd {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  padding: 0.05rem 0.3rem;
+  border-radius: 3px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+}
+
+.hero-highlight-metric {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Visitor Exploration Lens Switcher */
+.hero-lens-block {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.hero-lens-group {
+  display: inline-flex;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+
+.hero-lens-btn {
+  padding: 0.32rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  border-radius: 4px;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.hero-lens-btn:hover:not(.active) {
+  color: var(--text-primary);
+}
+
+.hero-lens-btn.active {
+  background: var(--bg-card);
+  color: var(--accent-primary);
+}
+
+/* Recruiter Quick Brief Card */
+.recruiter-brief-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--accent-primary);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.recruiter-brief-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.recruiter-brief-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-family: var(--font-mono, monospace);
+}
+
+.recruiter-pitch-copy {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  color: var(--accent-primary);
+  transition: border-color var(--transition-fast);
+}
+
+.recruiter-pitch-copy:hover {
+  border-color: var(--accent-primary);
+}
+
+.recruiter-brief-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.45rem 0.85rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.recruiter-brief-grid strong {
+  color: var(--text-primary);
 }
 
 .hero-badge .badge-dot {
@@ -167,12 +302,15 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .hero-illustration {
   position: relative;
   width: 100%;
   max-width: 500px;
+  min-width: 0;
 }
 
 .hero-code-window {
@@ -297,7 +435,7 @@
 /* ================= RESPONSIVE ================= */
 @media (max-width: 900px) {
   .hero-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     text-align: center;
   }
 
@@ -322,7 +460,32 @@
   }
 
   .hero-visual {
-    display: none;
+    display: flex;
+    width: 100%;
+    margin-top: 0.5rem;
+    text-align: left;
+  }
+
+  .hero-top-row {
+    justify-content: center;
+  }
+
+  .hero-lens-block {
+    justify-content: center;
+  }
+
+  .hero-lens-group {
+    justify-content: center;
+  }
+
+  .recruiter-brief-card {
+    text-align: left;
+    width: 100%;
+  }
+
+  .recruiter-brief-grid {
+    grid-template-columns: 1fr;
+    text-align: left;
   }
 
   .scroll-indicator {

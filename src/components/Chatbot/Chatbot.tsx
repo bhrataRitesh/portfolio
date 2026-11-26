@@ -6,6 +6,7 @@ import {
   initialSuggestions,
   BotReply,
 } from "@/lib/chatbotEngine";
+import { usePortfolio } from "@/context/PortfolioContext";
 import "./chatbot.css";
 
 interface Message {
@@ -85,18 +86,20 @@ const INITIAL_MESSAGES: Message[] = [
   {
     id: 1,
     type: "bot",
-    text: "Hi there! 👋 I'm **Ritesh's AI Assistant**.\n\nAsk me about his experience at **Webkul**, tech stack, featured projects (**EduYug & Shramik**), education, or grab his resume!",
+    text: "Hi there! 👋 I'm **Ritesh's AI Assistant**.\n\nAsk me about his experience at **Webkul**, tech stack, **8 featured projects** (Laravel Marketplace, CS-Cart Razorpay, EduYug, Shramik v2, ModCart, JobSearch, Acquisitions, Microservices), live LeetCode stats, or grab his resume!",
     time: "Just now",
   },
 ];
 
 export default function Chatbot() {
+  const { assistantTrigger } = usePortfolio();
   const [isOpen, setIsOpen] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [suggestions, setSuggestions] = useState<string[]>(initialSuggestions);
   const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES);
   const [inputValue, setInputValue] = useState("");
   const nextId = useRef(2);
+  const lastHandledTrigger = useRef<number>(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -176,6 +179,19 @@ export default function Chatbot() {
     e.preventDefault();
     sendMessage(inputValue);
   };
+
+  // Open & auto-query when triggered externally from Hero/Experience/Projects/Cmd+K
+  useEffect(() => {
+    if (
+      assistantTrigger &&
+      assistantTrigger.timestamp > lastHandledTrigger.current
+    ) {
+      lastHandledTrigger.current = assistantTrigger.timestamp;
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setIsOpen(true);
+      sendMessage(assistantTrigger.query);
+    }
+  }, [assistantTrigger, sendMessage]);
 
   const handleClearChat = useCallback(() => {
     setMessages([

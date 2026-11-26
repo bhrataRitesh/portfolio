@@ -2,14 +2,11 @@
 
 import Link from "next/link";
 import { ProjectData } from "@/lib/projects";
-import Perspective3DCard from "@/components/UI3D/Perspective3DCard";
 
 export default function ProjectCard({ project }: { project: ProjectData }) {
   return (
-    <Perspective3DCard
+    <div
       className="project-card-wrapper"
-      maxTilt={6}
-      scale={1.015}
       style={{ display: "flex", flexDirection: "column", height: "100%" }}
     >
       <Link
@@ -50,6 +47,6 @@ export default function ProjectCard({ project }: { project: ProjectData }) {
           )}
         </div>
       </Link>
-    </Perspective3DCard>
+    </div>
   );
 }

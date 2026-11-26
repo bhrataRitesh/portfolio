@@ -280,6 +280,63 @@
   margin-top: 0.2rem;
 }
 
+.lc-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.lc-json-toggle {
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.lc-json-toggle:hover,
+.lc-json-toggle.active {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.lc-json-drawer {
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+.lc-json-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.85rem;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  color: #10b981;
+}
+
+.lc-json-code {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.74rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-height: 220px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
 .about-leetcode-btn {
   display: inline-flex;
   align-items: center;
@@ -639,7 +696,64 @@
     flex-direction: column;
     align-items: flex-start;
   }
-  .about-leetcode-btn {
+  .lc-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.lc-json-toggle {
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.lc-json-toggle:hover,
+.lc-json-toggle.active {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.lc-json-drawer {
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+.lc-json-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.85rem;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  color: #10b981;
+}
+
+.lc-json-code {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.74rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-height: 220px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.about-leetcode-btn {
     width: 100%;
     justify-content: center;
   }

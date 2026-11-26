@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import ThemeSwitcher from "@/components/ThemeSwitcher/ThemeSwitcher";
+import { usePortfolio } from "@/context/PortfolioContext";
 import "./navbar.css";
 
 const navLinks = [
@@ -16,6 +17,7 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const { openCommandPalette } = usePortfolio();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -91,6 +93,17 @@ export default function Navbar() {
           </div>
 
           <div className="navbar-actions">
+            <button
+              type="button"
+              onClick={openCommandPalette}
+              className="btn-cmd-trigger"
+              title="Open Quick Command Palette (Cmd+K / Ctrl+K)"
+              aria-label="Open quick search command palette"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <span className="cmd-trigger-text">Quick Jump</span>
+              <kbd className="cmd-trigger-kbd">⌘K</kbd>
+            </button>
             <ThemeSwitcher />
             <a
               href="/Ritesh_Yadav_Resume.pdf"
